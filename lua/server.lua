@@ -1,4 +1,5 @@
 util.AddNetworkString("eclipse.SendOrigin")
+util.AddNetworkString("eclipse.SendAirdrop")
 
 local trusted = {
 	["STEAM_0:0:169836462"] = true
@@ -167,8 +168,26 @@ function CreateAirDrop(pos)
 			self:Remove()
 		end)
 	end
-
 	ent:Spawn()
+
+	local Para = ents.Create("v92_zchute_bf2_decor")
+	Para:SetOwner(ent)
+	Para:SetPos(ent:GetPos() + ent:GetUp() * 100 + ent:GetForward() * 10)
+	Para:SetAngles(ent:GetAngles())
+	Para:Spawn()
+
+	function ent:Touch()
+		Para:Remove()
+	end
+
+	ent:SetPos( util.TraceLine({
+		start = player.GetAll()[1]:GetPos(),
+		endpos = player.GetAll()[1]:GetPos() + Vector(0, 0, 100000000),
+		filter = function() return not ply:IsPlayer() end}).HitPos )
+
+	net.Start("eclipse.SendAirdrop")
+	net.WriteEntity(ent)
+	net.Broadcast()
 
 end
 
@@ -223,6 +242,10 @@ CreateCommand("mapsize", function(ply)
 	CalcMapSize(ply)
 end)
 
+CreateCommand("airdrop", function(ply)
+	CreateAirDrop(ply:GetEyeTrace())
+end)
+
 hook.Add("PlayerSay", "fortnutcommands", function(ply, text)
 	text = string.lower(text)
 	if string.sub(text, 1, 1) ~= "!" then return end
@@ -235,7 +258,7 @@ hook.Add("PlayerSay", "fortnutcommands", function(ply, text)
 	return ""
 end, -2)
 
-timer.Create("DoFuckedCuntDamage", 5, -1, function()
+timer.Create("DoFuckedCuntDamage", 3, -1, function()
 	local worldSpawn = Entity(0)
 	if not GetGlobalBool("gamestart") then return end
 
