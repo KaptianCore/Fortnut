@@ -102,12 +102,14 @@ end
 function DoSpawns(playe)
 	if playe then
 		playe:SetPos(Vector(math.random(-MapSize[1] / 2, MapSize[1] / 2), math.random(-MapSize[1] / 2, MapSize[1] / 2)), MapSize[3])
-
+		cachedPlayers[ply] = true
 		return
 	end
 
 	for k, ply in ipairs(player.GetAll()) do
 		ply:SetPos(Vector(math.random(-MapSize[1] / 2, MapSize[1] / 2), math.random(-MapSize[1] / 2, MapSize[1] / 2)), MapSize[3])
+			if not ply:Alive() then continue end
+			cachedPlayers[ply] = true
 	end
 end
 
@@ -157,10 +159,7 @@ CreateCommand("start", function(ply)
 	timer.Simple(30, function()
 		SetOrigin(pos)
 		SetGlobalBool("gamestart", true)
-		for k, v in ipairs(player.GetAll()) do
-			if not v:Alive() then continue end
-			cachedPlayers[v] = true
-		end
+		DoSpawns()
 	end)
 end)
 
