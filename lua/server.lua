@@ -196,7 +196,7 @@ timer.Create("DoFuckedCuntDamage", 5, -1, function()
 
 	for k, v in pairs(cachedPlayers) do
 		local distanceToOrigin = (20000 - ((CurTime() - originTime) * 100))
-		local distanceToCompare = distanceToOrigin < 2000 and 2000 or distanceToCompare
+		local distanceToCompare = distanceToOrigin < 2000 and 2000 or distanceToOrigin
 		print(k:GetPos():DistToSqr(origin), distanceToCompare)
 		if k:GetPos():DistToSqr(origin) < distanceToCompare then
 			k:TakeDamage(20, worldSpawn, worldSpawn)
