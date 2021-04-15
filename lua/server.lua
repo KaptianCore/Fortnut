@@ -149,7 +149,7 @@ CreateCommand("refresh", function(ply)
 end, function(ply) return trusted[ply:SteamID()] end)
 
 CreateCommand("start", function(ply)
-	if table.IsEmpty(MapSize) then ply:ChatPrint("No Mapsize dumbcunt") end
+	if table.IsEmpty(MapSize) then ply:ChatPrint("No Mapsize dumbcunt") return end
 	SpawnWeapons()
 	CreateTimer(player.GetAll(), "Fortnut", 30)
 	local pos = ply:GetEyeTrace().HitPos
