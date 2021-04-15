@@ -170,7 +170,7 @@ function CreateAirDrop(pos)
 	end
 	ent:Spawn()
 	ent:SetGravity(0.1)
-	constraint.Keepupright(ent, Angle(), 0, 100)
+	constraint.Keepupright(ent, Angle(), 0, 10000)
 
 	local Para = ents.Create("v92_zchute_bf2_decor")
 	Para:SetOwner(ent)
@@ -178,10 +178,11 @@ function CreateAirDrop(pos)
 	Para:SetAngles(ent:GetAngles())
 	Para:Spawn()
 
-	function ent:Touch()
+	function ent:Think()
 		Para:Remove()
 		constraint.RemoveConstraints(ent, "Keepupright")
 	end
+
 
 	ent:SetPos( util.TraceLine({
 		start = player.GetAll()[1]:GetPos(),
