@@ -34,6 +34,8 @@ function ParachuteKey(ply, key)
 	end
 end
 
+hook.Add( "KeyPress" , "ParachuteKey" , ParachuteKey )
+
 function CalcMapSize(ply)
 	local x = util.TraceLine({
 		start = player.GetAll()[1]:GetPos(),
