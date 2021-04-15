@@ -149,7 +149,7 @@ CreateCommand("refresh", function(ply)
 end, function(ply) return trusted[ply:SteamID()] end)
 
 CreateCommand("start", function(ply)
-	if not MapSize then ply:ChatPrint("No Mapsize dumbcunt") end
+	if not table.IsEmpty(MapSize) then ply:ChatPrint("No Mapsize dumbcunt") end
 	SpawnWeapons()
 	CreateTimer(player.GetAll(), "Fortnut", 30)
 	local pos = ply:GetEyeTrace().HitPos
@@ -158,6 +158,7 @@ CreateCommand("start", function(ply)
 		SetOrigin(pos)
 		SetGlobalBool("gamestart", true)
 		for k, v in ipairs(player.GetAll()) do
+			if not v:IsAlive() then continue end
 			cachedPlayers[v] = true
 		end
 	end)
