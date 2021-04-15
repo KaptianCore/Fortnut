@@ -35,6 +35,7 @@ function CreateWeightedTable(tbl)
 
 	return weighted
 end
+
 local weaponClasses = CreateWeightedTable(weaponTable)
 print(weaponClasses)
 weaponClasses = randomiseTable(weaponClasses)
@@ -150,12 +151,15 @@ end, function(ply) return trusted[ply:SteamID()] end)
 CreateCommand("start", function(ply)
 	SpawnWeapons()
 	CreateTimer(player.GetAll(), "Fortnut", 30)
-	timer.Simple(30, DoSpawns)
-	SetGlobalBool("gamestart", true)
-	SetOrigin(ply)
-	for k, v in ipairs(player.GetAll()) do
-		cachedPlayers[v] = true
-	end
+	local pos = ply:GetEyeTrace().HitPos
+
+	timer.Simple(30, function()
+		SetOrigin(pos)
+		SetGlobalBool("gamestart", true)
+		for k, v in ipairs(player.GetAll()) do
+			cachedPlayers[v] = true
+		end
+	end)
 end)
 
 CreateCommand("respawn", function(ply, target)
@@ -200,9 +204,9 @@ timer.Create("DoFuckedCuntDamage", 5, -1, function()
 	end
 end)
 
-
 hook.Add("PlayerDeath", "CuntDiedLmao", function(ply, inflictor, attacker)
 	cachedPlayers[ply] = nil
+
 	if attacker:IsValid() and attacker:IsPlayer() then
 		attacker:AddFrags(2)
 	end
