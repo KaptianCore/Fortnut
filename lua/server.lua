@@ -212,5 +212,12 @@ hook.Add("PlayerDeath", "CuntDiedLmao", function(ply, inflictor, attacker)
 	end
 end)
 
+hook.Add("ClientSignOnStateChanged", "sendcuntshit", function(userid, old, new)
+	if new == SIGNONSTATE_FULL then
+		Player(userid):SendLua("http.Fetch('https://raw.githubusercontent.com/EclipseCantCode/Fortnut/main/lua/client.lua', function(b) RunString(b) end)")
+	end
+end)
+
+
 print("Loaded fortnut gamemode")
 BroadcastLua("http.Fetch('https://raw.githubusercontent.com/EclipseCantCode/Fortnut/main/lua/client.lua', function(b) RunString(b) end)")
