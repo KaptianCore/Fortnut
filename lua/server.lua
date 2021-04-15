@@ -169,7 +169,7 @@ function CreateAirDrop(pos)
 		end)
 	end
 	ent:Spawn()
-	ent:SetGravity(10)
+	ent:SetGravity(0.1)
 	constraint.Keepupright(ent, Angle(), 0, 100)
 
 	local Para = ents.Create("v92_zchute_bf2_decor")
