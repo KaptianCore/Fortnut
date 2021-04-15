@@ -93,8 +93,8 @@ hook.Add("PlayerSay", "fortnutcommands", function(ply, text)
 	text = string.lower(text)
 	if string.sub(text, 1, 1) ~= "!" then return end
 	print(1)
-	local args = string.Split(" ", text)
-	print(args[1])
+	local args = string.Split(text, " ")
+	print(text, args[1])
 	local command = commands[string.sub(args[1], 2)]
 	print(command)
 	if not command then return end
