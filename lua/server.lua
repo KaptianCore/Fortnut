@@ -105,7 +105,8 @@ end
 
 function DoSpawns(playe)
 	if playe then
-		playe:Strip()
+		playe:StripWeapons()
+		playe:Give("weapon_fists")
 		playe:SetWalkSpeed(160)
 		playe:SetRunSpeed(240)
 		playe:SetPos(Vector(math.random(-MapSize[1] / 2, MapSize[1] / 2), math.random(-MapSize[1] / 2, MapSize[1] / 2)), MapSize[3])
@@ -115,7 +116,8 @@ function DoSpawns(playe)
 	end
 
 	for k, ply in ipairs(player.GetAll()) do
-		ply:Strip()
+		ply:StripWeapons()
+		ply:Give("weapon_fists")
 		ply:SetWalkSpeed(160)
 		ply:SetRunSpeed(240)
 		ply:SetPos(Vector(math.random(-MapSize[1] / 2, MapSize[1] / 2), math.random(-MapSize[1] / 2, MapSize[1] / 2)), MapSize[3])
