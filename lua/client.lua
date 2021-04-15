@@ -14,7 +14,9 @@ originTime = originTime or nil
 local airdrops = {}
 
 net_Receive("eclipse.SendAirdrop", function()
-    table.insert(airdrops, net_ReadEntity())
+    local thing = net.ReadEntity()
+    print(thing)
+    table.insert(airdrops, thing)
 end)
 
 net_Receive("eclipse.SendOrigin", function()
