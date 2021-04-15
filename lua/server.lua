@@ -170,6 +170,10 @@ CreateCommand("setorigin", function(ply)
 	SetOrigin(ply:GetEyeTrace().HitPos)
 end)
 
+CreateCommand("mapsize", function(ply)
+	CalcMapSize(ply)
+end)
+
 hook.Add("PlayerSay", "fortnutcommands", function(ply, text)
 	text = string.lower(text)
 	if string.sub(text, 1, 1) ~= "!" then return end
