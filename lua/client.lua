@@ -7,6 +7,7 @@ local CurTime = CurTime
 local render_DrawWireframeSphere = CLIENT and render.DrawWireframeSphere
 local Color = Color
 local chat_AddText = CLIENT and chat.AddText
+local net_ReadEntity = net.ReadEntity
 
 origin = origin or nil
 originTime = originTime or nil

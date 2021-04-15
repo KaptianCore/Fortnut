@@ -169,6 +169,8 @@ function CreateAirDrop(pos)
 		end)
 	end
 	ent:Spawn()
+	ent:SetGravity(10)
+	constraint.Keepupright(ent, Angle(), 0, 100)
 
 	local Para = ents.Create("v92_zchute_bf2_decor")
 	Para:SetOwner(ent)
@@ -178,12 +180,13 @@ function CreateAirDrop(pos)
 
 	function ent:Touch()
 		Para:Remove()
+		constraint.RemoveConstraints(ent, "Keepupright")
 	end
 
 	ent:SetPos( util.TraceLine({
 		start = player.GetAll()[1]:GetPos(),
 		endpos = player.GetAll()[1]:GetPos() + Vector(0, 0, 100000000),
-		filter = function() return not ply:IsPlayer() end}).HitPos )
+		filter = function(fasf) return not fsaf:IsPlayer() end}).HitPos )
 
 	net.Start("eclipse.SendAirdrop")
 	net.WriteEntity(ent)
