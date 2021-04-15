@@ -90,6 +90,7 @@ CreateCommand("refresh", function(ply)
 end, function(ply) return trusted[ply:SteamID()] end)
 
 hook.Add("PlayerSay", "fortnutcommands", function(ply, text)
+	print(text, 123123123123123123)
 	text = string.lower(text)
 	if string.sub(text, 1, 1) ~= "!" then return end
 	local args = string.Split(" ", text)
