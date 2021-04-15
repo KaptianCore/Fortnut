@@ -12,7 +12,7 @@ local weaponSpawns = {"10742.502930 -408.720581 -420.715027", "10890.785156 -732
 local weaponTable = {{3, "cw_smoke_grenade"}, {4, "khr_delisle"}, {3, "ma85_wf_smg41"}, {4, "khr_toz194"}, {4, "khr_ruby"}, {4, "khr_cz75"}, {3, "cw_g4p_usp40"}, {4, "khr_deagle"}, {4, "khr_m1carbine"}, {4, "khr_makarov"}, {2, "cw_g4p_ump45"}, {2, "khr_ak103"}, {4, "khr_svt40"}, {4, "ma85_wf_shg07"}, {4, "ma85_wf_smg18"}, {2, "cw_fiveseven"}, {3, "ma85_wf_pt14"}, {2, "khr_vector"}, {3, "khr_simsks"}, {3, "khr_m620"}, {2, "khr_aek971"}, {3, "ma85_wf_ar41"}, {3, "ma85_wf_ar03"}, {3, "ma85_wf_smg33"}, {3, "ma85_wf_smg25"}, {2, "cw_flash_grenade"}, {3, "khr_mosin"}, {2, "ma85_wf_pt41_ww2"}, {2, "cw_g4p_mp412_rex"}, {2, "khr_p90"}, {2, "khr_pkm"}, {1, "cw_ak74"}, {2, "khr_t5000"}, {1, "khr_mp5a5"}, {2, "khr_microdeagle"}, {2, "cw_frag_grenade"}, {1, "ma85_wf_sr34_gold"}, {1, "ma85_wf_ar22_gold"}, {1, "ma85_wf_pt21"}, {1, "ma85_wf_mg07_gold"}, {1, "weapon_slam"}}
 MapSize = {}
 
-function randomiseTable(tbl)
+function randomiseTable(tInput)
 	local tReturn = {}
 
 	for i = #tInput, 1, -1 do
