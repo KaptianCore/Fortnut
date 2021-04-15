@@ -180,7 +180,9 @@ timer.Create("DoFuckedCuntDamage", 5, -1, function()
 	if not GetGlobalBool("gamestart") then return end
 
 	for k, v in ipairs(cachedPlayers) do
-		if ply:GetPos():DistToSqr(origin) < (20000 - ((CurTime() - originTime) * 100)) then
+		local distanceToOrigin = (20000 - ((CurTime() - originTime) * 100))
+		local distanceToCompare = distanceToOrigin < 2000 and 2000 or distanceToCompare
+		if ply:GetPos():DistToSqr(origin) < distanceToCompare then
 			ply:TakeDamage(20, worldSpawn, worldSpawn)
 		end
 	end
