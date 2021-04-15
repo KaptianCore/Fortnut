@@ -173,14 +173,16 @@ function CreateAirDrop(pos)
 		end)
 	end
 
-	ent:Spawn()
 	ent:SetGravity(0.1)
 	constraint.Keepupright(ent, Angle(), 0, 10000)
 	local Para = ents.Create("v92_zchute_bf2_decor")
 	Para:SetOwner(ent)
 	Para:SetPos(ent:GetPos() + ent:GetUp() * 100 + ent:GetForward() * 10)
 	Para:SetAngles(ent:GetAngles())
+	para:SetGravity(0)
+	ent:Spawn()
 	Para:Spawn()
+
 
 	function ent:Think()
 		ent.lastpos = ent.lastpos or Vector(0, 0, 0)
