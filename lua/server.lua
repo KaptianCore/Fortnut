@@ -158,7 +158,7 @@ CreateCommand("start", function(ply)
 		SetOrigin(pos)
 		SetGlobalBool("gamestart", true)
 		for k, v in ipairs(player.GetAll()) do
-			if not v:IsAlive() then continue end
+			if not v:Alive() then continue end
 			cachedPlayers[v] = true
 		end
 	end)
@@ -167,7 +167,7 @@ end)
 CreateCommand("respawn", function(ply, target)
 	target = getUser(target, true, ply)
 
-	if target and target:IsAlive() then
+	if target and target:Alive() then
 		DoSpawns(target)
 	end
 end)
