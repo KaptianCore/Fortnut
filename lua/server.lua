@@ -179,7 +179,7 @@ function CreateAirDrop(pos)
 	Para:SetOwner(ent)
 	Para:SetPos(ent:GetPos() + ent:GetUp() * 100 + ent:GetForward() * 10)
 	Para:SetAngles(ent:GetAngles())
-	para:SetGravity(0)
+	Para:SetGravity(0)
 	ent:Spawn()
 	Para:Spawn()
 
