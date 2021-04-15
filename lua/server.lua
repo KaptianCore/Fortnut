@@ -150,7 +150,7 @@ end, function(ply) return trusted[ply:SteamID()] end)
 CreateCommand("start", function(ply)
 	SpawnWeapons()
 	CreateTimer(player.GetAll(), "Fortnut", 30)
-	timer.Create(30, DoSpawns)
+	timer.Simple(30, DoSpawns)
 	SetGlobalBool("gamestart", true)
 	SetOrigin(ply)
 	for k, v in ipairs(player.GetAll()) do
