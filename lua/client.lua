@@ -6,7 +6,7 @@ end)
 
 hook.Add("PostDrawTranslucentRenderables", "DrawFuckedCunts", function()
 	if GetGlobalBool("gamestart") then
-		render.DrawWireframeSphere(origin, 20000 - ((CurTime() - originTime) * 100), 50, 50)
+		render.DrawWireframeSphere(origin, 20000 - ((CurTime() - originTime) * 100), 50, 50, Color(0, 217, 255), true)
 	end
 end)
 
