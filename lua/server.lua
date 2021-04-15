@@ -35,8 +35,9 @@ function CreateWeightedTable(tbl)
 
 	return weighted
 end
-
-local weaponClasses = randomiseTable(CreateWeightedTable(weaponTable), 10)
+local weaponClasses = CreateWeightedTable(weaponTable)
+print(weaponClasses)
+weaponClasses = randomiseTable(weaponClasses)
 
 ----- Override parachute
 function ParachuteKey(ply, key)
