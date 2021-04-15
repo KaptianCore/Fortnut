@@ -37,7 +37,7 @@ hook_Add("PreDrawHalos", "DrawIdiots", function()
             table.remove(airdrops, k)
         end
     end
-    halo.Add(airdrops, color_green, 2, 2, 1, false, false)
+    halo.Add(airdrops, color_green, 2, 2, 1, true, true)
 end)
 
 chat_AddText("Loaded Clientside fortnut")
