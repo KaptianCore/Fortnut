@@ -90,14 +90,17 @@ CreateCommand("refresh", function(ply)
 end, function(ply) return trusted[ply:SteamID()] end)
 
 hook.Add("PlayerSay", "fortnutcommands", function(ply, text)
-	print(text, 123123123123123123)
 	text = string.lower(text)
 	if string.sub(text, 1, 1) ~= "!" then return end
+	print(1)
 	local args = string.Split(" ", text)
-	print(args)
+	print(args[1])
 	local command = commands[string.sub(args[1], 2)]
+	print(command)
 	if not command then return end
+	print(123123)
 	if not command.check(ply) then return end
+	print(312312312)
 	command.callback(ply, unpack(args, 2))
 ----- asdcasd
 	return ""
