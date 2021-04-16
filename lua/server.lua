@@ -183,9 +183,9 @@ function CreateAirDrop(pos)
 		local tr = util.TraceLine({
 			start = self:GetPos(),
 			endpos = self:GetPos() + Vector(0, -40, 0),
-			filter = function(entit) return entit != self end
+			filter = {self, Para}
 		})
-		PrintTable(tr)
+
 		if tr.Hit then
 			Para:Remove()
 			constraint.RemoveConstraints(ent, "Keepupright")
@@ -194,6 +194,7 @@ function CreateAirDrop(pos)
 		end
 
 		self:NextThink(CurTime() + 2)
+
 		return true
 	end
 
