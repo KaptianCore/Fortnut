@@ -180,7 +180,7 @@ function CreateAirDrop(pos)
 	phys:SetVelocity(Vector(0, 0, -40))
 
 	function ent:Think()
-		local tr = til.TraceLine({
+		local tr = util.TraceLine({
 			start = self:GetPos(),
 			endpos = self:GetPos() + Vector(0, -40, 0),
 			filter = {self}
