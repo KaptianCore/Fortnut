@@ -182,13 +182,10 @@ function CreateAirDrop(pos)
 	function ent:Think()
 		ent.lastpos = ent.lastpos or Vector(0, 0, 0)
 
-		local dist = util.TraceLine({
+		if util.TraceLine({
 			start = self:GetPos(),
-			endpos = self:GetPos() + Vector(0, -40, 0),
-		})
-		
-
-		if self:GetPos() == ent.lastpos then
+			endpos = self:GetPos() + Vector(0, -40, 0)
+		}).Hit then
 			Para:Remove()
 			constraint.RemoveConstraints(ent, "Keepupright")
 			phys:EnableGravity(true)
@@ -196,6 +193,7 @@ function CreateAirDrop(pos)
 		end
 
 		ent.lastpos = self:GetPos()
+
 		return true
 	end
 
