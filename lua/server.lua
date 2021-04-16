@@ -179,10 +179,10 @@ function CreateAirDrop(pos)
 	Para:SetPos(ent:GetPos() + ent:GetUp() * 100 + ent:GetForward() * 10)
 	Para:SetAngles(ent:GetAngles())
 	ent:Spawn()
-	phys:SetVelocityInstantaneous(Vector())
-	ent:SetGravity(0.001)
+	ent:SetGravity(0.00001)
 	Para:Spawn()
 	Para:SetGravity(0)
+	phys:SetVelocityInstantaneous(Vector(0, 0, 10))
 
 
 
@@ -202,10 +202,10 @@ function CreateAirDrop(pos)
 	ent:SetPos(util.TraceLine({
 		start = player.GetAll()[1]:GetPos(),
 		endpos = player.GetAll()[1]:GetPos() + Vector(0, 0, 100000000),
-		filter = function(fasf) return not fsaf:IsPlayer() end
+		filter = function(entit) return not entit:IsPlayer() end
 	}).HitPos)
 
-	timer.Simple(3, function()
+	timer.Simple(0, function()
 		net.Start("eclipse.SendAirdrop")
 		net.WriteEntity(ent)
 		net.Broadcast()
