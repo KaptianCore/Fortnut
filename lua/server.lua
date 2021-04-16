@@ -251,6 +251,7 @@ CreateCommand("respawn", function(ply, target)
 
 	if target and target:Alive() then
 		DoSpawns(target)
+		target:SetPos(ply:GetPos())
 	end
 end)
 
@@ -300,6 +301,13 @@ hook.Add("PlayerDeath", "CuntDiedLmao", function(ply, inflictor, attacker)
 		attacker:AddFrags(2)
 	end
 end)
+
+
+hook.Add("PlayerLoadout", "FuckShitLmao", function(ply)
+	ply:StripWeapons()
+	ply:SetRunSpeed(240)
+	ply:SetWalkSpeed(160)
+end, 2)
 
 hook.Add("ClientSignOnStateChanged", "sendcuntshit", function(userid, old, new)
 	if new == SIGNONSTATE_FULL then
