@@ -181,10 +181,16 @@ function CreateAirDrop(pos)
 	ent:Spawn()
 	Para:Spawn()
 	phys:EnableGravity(false)
-	phys:SetVelocity(Vector(0, 0, -20))
+	phys:SetVelocity(Vector(0, 0, -40))
 
 	function ent:Think()
 		ent.lastpos = ent.lastpos or Vector(0, 0, 0)
+
+		local dist = util.TraceLine({
+			start = self:GetPos(),
+			endpos = self:GetPos() + Vector(0, -40, 0),
+		})
+		
 
 		if self:GetPos() == ent.lastpos then
 			Para:Remove()
@@ -194,6 +200,7 @@ function CreateAirDrop(pos)
 		end
 
 		ent.lastpos = self:GetPos()
+		return true
 	end
 
 	ent:SetPos(util.TraceLine({
