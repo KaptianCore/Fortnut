@@ -180,8 +180,6 @@ function CreateAirDrop(pos)
 	phys:SetVelocity(Vector(0, 0, -40))
 
 	function ent:Think()
-		ent.lastpos = ent.lastpos or Vector(0, 0, 0)
-
 		if util.TraceLine({
 			start = self:GetPos(),
 			endpos = self:GetPos() + Vector(0, -40, 0)
@@ -192,8 +190,7 @@ function CreateAirDrop(pos)
 			self.Think = function() end
 		end
 
-		ent.lastpos = self:GetPos()
-
+		self:NextThink(CurTime() + 2)
 		return true
 	end
 
