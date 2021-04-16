@@ -183,7 +183,7 @@ function CreateAirDrop(pos)
 		local tr = util.TraceLine({
 			start = self:GetPos(),
 			endpos = self:GetPos() + Vector(0, -40, 0),
-			filter = {self}
+			filter = function(entit) return entit != self end
 		})
 		PrintTable(tr)
 		if tr.Hit then
@@ -198,8 +198,8 @@ function CreateAirDrop(pos)
 	end
 
 	ent:SetPos(util.TraceLine({
-		start = pos:GetPos(),
-		endpos = pos:GetPos() + Vector(0, 0, 100000000),
+		start = pos,
+		endpos = pos + Vector(0, 0, 100000000),
 		filter = function(entit) return not entit:IsPlayer() end
 	}).HitPos)
 
