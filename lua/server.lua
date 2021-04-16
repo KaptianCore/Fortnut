@@ -182,7 +182,7 @@ function CreateAirDrop(pos)
 	function ent:Think()
 		local tr = util.TraceLine({
 			start = self:GetPos(),
-			endpos = self:GetPos() + Vector(0, 0, -50),
+			endpos = self:GetPos() + Vector(0, 0, -300),
 			filter = {self, Para}
 		})
 
@@ -274,6 +274,7 @@ hook.Add("PlayerSay", "fortnutcommands", function(ply, text)
 	if not command then return end
 	if not command.check(ply) then return end
 	command.callback(ply, unpack(args, 2))
+	ply:ChatPrint("Did that shit lmao")
 
 	return ""
 end, -2)
