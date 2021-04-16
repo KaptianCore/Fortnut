@@ -1,7 +1,7 @@
 local net_ReadEntity = net.ReadEntity
 local table_insert = table.insert
 local render_SetColorMaterial = CLIENT and render.SetColorMaterial
-local render_DrawSphere = render_DrawSphere
+local render_DrawSphere = render.DrawSphere
 local ipairs = ipairs
 local table_remove = table.remove
 local halo_Add = CLIENT and halo.Add
