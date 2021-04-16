@@ -179,10 +179,9 @@ function CreateAirDrop(pos)
 	Para:SetPos(ent:GetPos() + ent:GetUp() * 100 + ent:GetForward() * 10)
 	Para:SetAngles(ent:GetAngles())
 	ent:Spawn()
-	ent:SetGravity(0.00001)
 	Para:Spawn()
-	Para:SetGravity(0)
-	phys:SetVelocityInstantaneous(Vector(0, 0, 10))
+	phys:EnableGravity(false)
+	phys:SetVelocity(Vector(0, 0, -20))
 
 
 
@@ -193,6 +192,7 @@ function CreateAirDrop(pos)
 		if self:GetPos() == ent.lastpos then
 			Para:Remove()
 			constraint.RemoveConstraints(ent, "Keepupright")
+			phys:EnableGravity(true)
 			self.Think = function() end
 		end
 
