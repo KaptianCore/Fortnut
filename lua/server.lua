@@ -162,7 +162,7 @@ function CreateAirDrop(pos)
 	function ent:Use(activator, caller)
 		print(airDropClasses[math.random(#airDropClasses)])
 		if istable(airDropClasses[math.random(#airDropClasses)]) then
-			print(airDropClasses[math.random(#airDropClasses)])
+			PrintTable(airDropClasses[math.random(#airDropClasses)])
 		end
 		if self.beenUsed then return end
 		self.beenUsed = true
@@ -182,9 +182,6 @@ function CreateAirDrop(pos)
 	Para:Spawn()
 	phys:EnableGravity(false)
 	phys:SetVelocity(Vector(0, 0, -20))
-
-
-
 
 	function ent:Think()
 		ent.lastpos = ent.lastpos or Vector(0, 0, 0)
