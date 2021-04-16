@@ -168,20 +168,23 @@ function CreateAirDrop(pos)
 		self.beenUsed = true
 		activator:Give(airDropClasses[math.random(#airDropClasses)])
 
-		timer.Simple(5, function()
+		timer.Simple(0, function()
 			self:Remove()
 		end)
 	end
 
-	ent:SetGravity(0.1)
 	constraint.Keepupright(ent, Angle(), 0, 10000)
 	local Para = ents.Create("v92_zchute_bf2_decor")
 	Para:SetOwner(ent)
 	Para:SetPos(ent:GetPos() + ent:GetUp() * 100 + ent:GetForward() * 10)
 	Para:SetAngles(ent:GetAngles())
-	Para:SetGravity(0)
 	ent:Spawn()
+	phys:SetVelocityInstantaneous(Vector())
+	ent:SetGravity(0.001)
 	Para:Spawn()
+	Para:SetGravity(0)
+
+
 
 
 	function ent:Think()
@@ -190,6 +193,7 @@ function CreateAirDrop(pos)
 		if self:GetPos() == ent.lastpos then
 			Para:Remove()
 			constraint.RemoveConstraints(ent, "Keepupright")
+			self.Think = function() end
 		end
 
 		ent.lastpos = self:GetPos()
