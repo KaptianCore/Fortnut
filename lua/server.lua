@@ -264,7 +264,7 @@ CreateCommand("mapsize", function(ply)
 end)
 
 CreateCommand("airdrop", function(ply)
-	CreateAirDrop(ply:GetEyeTrace())
+	CreateAirDrop(ply:GetEyeTrace().HitPos)
 end)
 
 hook.Add("PlayerSay", "fortnutcommands", function(ply, text)
