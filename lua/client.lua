@@ -26,12 +26,13 @@ net_Receive("eclipse.SendOrigin", function()
 	originTime, origin = net_ReadFloat(), net_ReadVector()
 end)
 
+local color_gre = Color(0, 58, 14, 250)
 hook_Add("PostDrawTranslucentRenderables", "DrawFuckedCunts", function()
 	if GetGlobalBool("gamestart") and origin and originTime then
-		local distanceToOrigin = (20000 - ((CurTime() - originTime) * 100))
+		local distanceToOrigin = (20000 - ((CurTime() - originTime) * 10))
 		local distanceToCompare = distanceToOrigin < 2000 and 2000 or distanceToOrigin
 		render_SetColorMaterial()
-		render_DrawSphere(origin, distanceToCompare, 50, 50, Color(0, 58, 14))
+		render_DrawSphere(origin, distanceToCompare, 50, 50, color_gre)
 	end
 end)
 
