@@ -33,6 +33,7 @@ hook_Add("PostDrawTranslucentRenderables", "DrawFuckedCunts", function()
 		local distanceToCompare = distanceToOrigin < 2000 and 2000 or distanceToOrigin
 		render_SetColorMaterial()
 		render_DrawSphere(origin, distanceToCompare, 50, 50, color_gre)
+        render_DrawSphere(origin, -distanceToCompare, 50, 50, color_gre)
 	end
 end)
 
