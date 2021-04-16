@@ -180,11 +180,13 @@ function CreateAirDrop(pos)
 	phys:SetVelocity(Vector(0, 0, -40))
 
 	function ent:Think()
-		if util.TraceLine({
+		local tr = til.TraceLine({
 			start = self:GetPos(),
 			endpos = self:GetPos() + Vector(0, -40, 0),
 			filter = {self}
-		}).Hit then
+		})
+		PrintTable(tr)
+		if tr.Hit then
 			Para:Remove()
 			constraint.RemoveConstraints(ent, "Keepupright")
 			phys:EnableGravity(true)
