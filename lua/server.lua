@@ -182,7 +182,7 @@ function CreateAirDrop(pos)
 	function ent:Think()
 		local tr = util.TraceLine({
 			start = self:GetPos(),
-			endpos = self:GetPos() + Vector(0, -300, 0),
+			endpos = self:GetPos() + Vector(0, 0, -300),
 			filter = {self, Para}
 		})
 		PrintTable(tr)
