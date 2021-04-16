@@ -182,7 +182,8 @@ function CreateAirDrop(pos)
 	function ent:Think()
 		if util.TraceLine({
 			start = self:GetPos(),
-			endpos = self:GetPos() + Vector(0, -40, 0)
+			endpos = self:GetPos() + Vector(0, -40, 0),
+			filter = {self}
 		}).Hit then
 			Para:Remove()
 			constraint.RemoveConstraints(ent, "Keepupright")
