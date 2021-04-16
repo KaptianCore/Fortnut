@@ -74,28 +74,28 @@ hook.Add("KeyPress", "ParachuteKey", ParachuteKey)
 
 function CalcMapSize(ply)
 	local x = util.TraceLine({
-		start = player.GetAll()[1]:GetPos(),
-		endpos = player.GetAll()[1]:GetPos() + Vector(10000000000000, 0, 0),
+		start = ply:GetPos(),
+		endpos = ply:GetPos() + Vector(10000000000000, 0, 0),
 		filter = function() return not ply:IsPlayer() end
 	}).HitPos.x + math.abs(util.TraceLine({
-		start = player.GetAll()[1]:GetPos(),
-		endpos = player.GetAll()[1]:GetPos() + Vector(-10000000000000, 0, 0),
+		start = ply:GetPos(),
+		endpos = ply:GetPos() + Vector(-10000000000000, 0, 0),
 		filter = function() return not ply:IsPlayer() end
 	}).HitPos.x)
 
 	local y = util.TraceLine({
-		start = player.GetAll()[1]:GetPos(),
-		endpos = player.GetAll()[1]:GetPos() + Vector(0, 10000000000000, 0),
+		start = ply:GetPos(),
+		endpos = ply:GetPos() + Vector(0, 10000000000000, 0),
 		filter = function() return not ply:IsPlayer() end
 	}).HitPos.y + math.abs(util.TraceLine({
-		start = player.GetAll()[1]:GetPos(),
-		endpos = player.GetAll()[1]:GetPos() + Vector(0, -10000000000000, 0),
+		start = ply:GetPos(),
+		endpos = ply:GetPos() + Vector(0, -10000000000000, 0),
 		filter = function() return not ply:IsPlayer() end
 	}).HitPos.y)
 
 	local z = util.TraceLine({
-		start = player.GetAll()[1]:GetPos(),
-		endpos = player.GetAll()[1]:GetPos() + Vector(0, 0, 1000000000000),
+		start = ply:GetPos(),
+		endpos = ply:GetPos() + Vector(0, 0, 1000000000000),
 		filter = function() return not ply:IsPlayer() end
 	}).HitPos.z
 
@@ -198,8 +198,8 @@ function CreateAirDrop(pos)
 	end
 
 	ent:SetPos(util.TraceLine({
-		start = player.GetAll()[1]:GetPos(),
-		endpos = player.GetAll()[1]:GetPos() + Vector(0, 0, 100000000),
+		start = pos:GetPos(),
+		endpos = pos:GetPos() + Vector(0, 0, 100000000),
 		filter = function(entit) return not entit:IsPlayer() end
 	}).HitPos)
 
