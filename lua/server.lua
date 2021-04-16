@@ -185,7 +185,6 @@ function CreateAirDrop(pos)
 			endpos = self:GetPos() + Vector(0, 0, -50),
 			filter = {self, Para}
 		})
-		PrintTable(tr)
 
 		if tr.Hit then
 			Para:Remove()
