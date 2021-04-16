@@ -41,7 +41,7 @@ end
 local weaponClasses = CreateWeightedTable(weaponTable)
 weaponClasses = randomiseTable(weaponClasses)
 local airDropClasses = CreateWeightedTable(AirDropTable)
-airDropClasses = randomiseTable(AirDropTable)
+airDropClasses = randomiseTable(airDropClasses)
 
 ----- Override parachute
 function ParachuteKey(ply, key)
@@ -160,10 +160,6 @@ function CreateAirDrop(pos)
 	ent:SetUseType(SIMPLE_USE)
 
 	function ent:Use(activator, caller)
-		print(airDropClasses[math.random(#airDropClasses)])
-		if istable(airDropClasses[math.random(#airDropClasses)]) then
-			PrintTable(airDropClasses[math.random(#airDropClasses)])
-		end
 		if self.beenUsed then return end
 		self.beenUsed = true
 		activator:Give(airDropClasses[math.random(#airDropClasses)])
@@ -290,7 +286,6 @@ timer.Create("DoFuckedCuntDamage", 3, -1, function()
 	for k, v in pairs(cachedPlayers) do
 		local distanceToOrigin = (20000 - ((CurTime() - originTime) * 100))
 		local distanceToCompare = distanceToOrigin < 2000 and 2000 or (distanceToOrigin ^ 2)
-		print("niger", k, distanceToCompare, k:GetPos():DistToSqr(origin), k:GetPos():DistToSqr(origin) > distanceToCompare)
 
 		if k:GetPos():DistToSqr(origin) > distanceToCompare then
 			k:TakeDamage(20, worldSpawn, worldSpawn)
