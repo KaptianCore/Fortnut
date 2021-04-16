@@ -164,7 +164,7 @@ function CreateAirDrop(pos)
 		self.beenUsed = true
 		activator:Give(airDropClasses[math.random(#airDropClasses)])
 
-		timer.Simple(0, function()
+		timer.Simple(5, function()
 			self:Remove()
 		end)
 	end
@@ -205,7 +205,7 @@ function CreateAirDrop(pos)
 		filter = function(entit) return not entit:IsPlayer() end
 	}).HitPos)
 
-	timer.Simple(0, function()
+	timer.Simple(2, function()
 		net.Start("eclipse.SendAirdrop")
 		net.WriteEntity(ent)
 		net.Broadcast()
