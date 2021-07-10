@@ -2,7 +2,8 @@ util.AddNetworkString("eclipse.SendOrigin")
 util.AddNetworkString("eclipse.SendAirdrop")
 
 local trusted = {
-	["STEAM_0:0:169836462"] = true
+	["STEAM_0:0:169836462"] = true -- Eclipse
+	["STEAM_0:0:91079522"] = true -- Russ
 }
 
 local getUser = ULib.getUser
@@ -271,7 +272,7 @@ local weaponSpawns = {"12750.272461 14478.343750 -41.126221",
 "5924.589355 4976.824707 713.842285",
 "6671.751465 5047.002441 696.533325",
 "5078.142578 5128.295410 713.014099"}
-----------===================== cunt
+
 local weaponTable = {{3, "cw_smoke_grenade"}, {4, "khr_delisle"}, {3, "ma85_wf_smg41"}, {4, "khr_toz194"}, {4, "khr_ruby"}, {4, "khr_cz75"}, {3, "cw_g4p_usp40"}, {4, "khr_deagle"}, {4, "khr_m1carbine"}, {4, "khr_makarov"}, {2, "cw_g4p_ump45"}, {2, "khr_ak103"}, {4, "khr_svt40"}, {4, "ma85_wf_shg07"}, {4, "ma85_wf_smg18"}, {2, "cw_fiveseven"}, {3, "ma85_wf_pt14"}, {2, "khr_vector"}, {3, "khr_simsks"}, {3, "khr_m620"}, {2, "khr_aek971"}, {3, "ma85_wf_ar41"}, {3, "ma85_wf_ar03"}, {3, "ma85_wf_smg33"}, {3, "ma85_wf_smg25"}, {2, "cw_flash_grenade"}, {3, "khr_mosin"}, {2, "ma85_wf_pt41_ww2"}, {2, "cw_g4p_mp412_rex"}, {2, "khr_p90"}, {2, "khr_pkm"}, {1, "cw_ak74"}, {2, "khr_t5000"}, {1, "khr_mp5a5"}, {2, "khr_microdeagle"}, {2, "cw_frag_grenade"}, {1, "ma85_wf_sr34_gold"}, {1, "ma85_wf_ar22_gold"}, {1, "ma85_wf_pt21"}, {1, "ma85_wf_mg07_gold"}, {1, "weapon_slam"}}
 local AirDropTable = {{10, "ma85_wf_ar11_ann_br"}, {10, "weapon_sh_mustardgas"}, {10, "poison_dart_gun"}, {10, "weapon_rpg"}, {10, "weapon_a35a2"}, {10, "cw_g4p_awm"}, {10, "khr_gaussrifle"}, {10, "cw_kk_hk416"}, {10, "cw_g4p_g2contender"}, {10, "weapon_crossbow"}}
 MapSize = {}
