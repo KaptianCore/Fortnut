@@ -2,7 +2,7 @@ util.AddNetworkString("eclipse.SendOrigin")
 util.AddNetworkString("eclipse.SendAirdrop")
 
 local trusted = {
-	["STEAM_0:0:169836462"] = true -- Eclipse
+	["STEAM_0:0:169836462"] = true, -- Eclipse
 	["STEAM_0:0:91079522"] = true -- Russ
 }
 
