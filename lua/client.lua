@@ -18,35 +18,36 @@ originTime = originTime or nil
 local airdrops = {}
 
 net_Receive("eclipse.SendAirdrop", function()
-	local thing = net_ReadEntity()
-	table_insert(airdrops, thing)
+    local thing = net_ReadEntity()
+    table_insert(airdrops, thing)
 end)
 
 net_Receive("eclipse.SendOrigin", function()
-	originTime, origin = net_ReadFloat(), net_ReadVector()
+    originTime, origin = net_ReadFloat(), net_ReadVector()
 end)
 
 local color_gre = Color(0, 58, 14, 250)
+
 hook_Add("PostDrawTranslucentRenderables", "DrawFuckedCunts", function()
-	if GetGlobalBool("gamestart") and origin and originTime then
-		local distanceToOrigin = (25000 - ((CurTime() - originTime) * 50))
-		local distanceToCompare = distanceToOrigin < 2000 and 2000 or distanceToOrigin
-		render_SetColorMaterial()
-		render_DrawSphere(origin, distanceToCompare, 50, 50, color_gre)
+    if GetGlobalBool("gamestart") and origin and originTime then
+        local distanceToOrigin = (25000 - ((CurTime() - originTime) * 50))
+        local distanceToCompare = distanceToOrigin < 2000 and 2000 or distanceToOrigin
+        render_SetColorMaterial()
+        render_DrawSphere(origin, distanceToCompare, 50, 50, color_gre)
         render_DrawSphere(origin, -distanceToCompare, 50, 50, color_gre)
-	end
+    end
 end)
 
 local color_green = Color(0, 255, 0)
 
 hook_Add("PreDrawHalos", "DrawIdiots", function()
-	for k, v in ipairs(airdrops) do
-		if not v:IsValid() then
-			table_remove(airdrops, k)
-		end
-	end
+    for k, v in ipairs(airdrops) do
+        if not v:IsValid() then
+            table_remove(airdrops, k)
+        end
+    end
 
-	halo_Add(airdrops, color_green, 5, 5, 1, false, true)
+    halo_Add(airdrops, color_green, 5, 5, 1, false, true)
 end)
 
 chat_AddText("Loaded Clientside fortnut")

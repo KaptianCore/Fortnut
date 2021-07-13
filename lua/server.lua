@@ -272,7 +272,87 @@ local weaponSpawns = {"12750.272461 14478.343750 -41.126221",
 "5924.589355 4976.824707 713.842285",
 "6671.751465 5047.002441 696.533325",
 "5078.142578 5128.295410 713.014099"}
-
+local playerSpawns = {"-8390.914063 -12978.682617 3391.425293",
+"-9516.575195 -13264.930664 3466.455078",
+"-10721.770508 -13571.400391 3546.785156",
+"-11376.826172 -13737.975586 3590.447021",
+"-12994.842773 -12362.920898 3329.458252",
+"-13082.325195 -11620.395508 3341.215820",
+"-13165.352539 -10915.706055 3437.577148",
+"-13255.778320 -10148.208008 3443.376465",
+"-13186.178711 -9290.172852 3432.304688",
+"-13179.902344 -8526.050781 3252.643066",
+"-13026.415039 -7877.764648 3247.105957",
+"-12944.351563 -7157.959961 3268.911621",
+"-13027.635742 -6451.084473 3289.174805",
+"-13026.495117 -5674.657227 3278.673096",
+"3112.441406 -4945.176270 3293.541992",
+"-13206.125977 -4150.026367 3330.528809",
+"-13256.135742 -2592.501221 3189.300781",
+"-13341.431641 -1868.550049 3205.489014",
+"-13435.815430 -1067.472168 3203.273926",
+"-13532.207031 -249.341476 3234.776855",
+"-13629.960938 580.335022 3263.525391",
+"-13569.327148 1386.499390 3314.880859",
+"-13189.199219 2127.513184 3491.367676",
+"-12634.902344 2810.493896 3346.000244",
+"-12051.106445 3529.822021 3192.895996",
+"-11484.043945 4228.529297 3044.180908",
+"-10976.963867 4853.328125 2911.196045",
+"-10438.847656 5516.367676 2770.072021",
+"-9893.344727 6188.508301 2627.010986",
+"-9329.116211 6883.721680 2479.038330",
+"-8906.735352 7404.154297 2797.870605",
+"-8387.154297 8044.355957 2821.644043",
+"-7973.028320 8554.612305 2888.287354",
+"-7478.706055 9163.685547 2994.000244",
+"-6922.061035 9849.544922 3024.531494",
+"-6140.997070 10248.221680 2952.362793",
+"-5197.372070 10359.408203 2952.362793",
+"-4278.137207 10467.722656 2952.362793",
+"-3407.542969 10570.305664 2952.362793",
+"-2502.623779 10676.933594 2952.362549",
+"-1623.618286 10780.506836 2952.362793",
+"-731.587891 10885.614258 2952.362793",
+"106.047523 10984.314453 2952.362793",
+"987.530884 11088.178711 2952.362793",
+"1829.666992 11187.409180 2952.362793",
+"2692.124512 11289.032227 2952.362793",
+"3546.353271 11389.685547 2952.362793",
+"4419.856445 11492.610352 2952.362793",
+"5229.415039 11588.001953 2952.362793",
+"6121.759277 11693.148438 2952.362793",
+"7078.408691 11805.870117 2952.362793",
+"7943.611816 11907.818359 2952.362793",
+"8874.690430 12017.527344 2952.362793",
+"9780.581055 12124.270508 2952.362793",
+"10708.476563 12233.604492 2952.362793",
+"11608.094727 12339.607422 2952.363037",
+"11989.533203 11679.338867 2857.413818",
+"11813.362305 10653.390625 2920.566895",
+"12063.306641 10145.602539 2827.155762",
+"11851.382813 9468.981445 2742.410400",
+"12179.250977 8634.120117 2594.887207",
+"12316.681641 7754.481934 2454.613770",
+"12370.002930 7055.967285 2873.973877",
+"12140.949219 6152.061523 2957.467285",
+"12466.018555 5491.661133 3198.242188",
+"12158.829102 4571.812500 3084.424316",
+"12052.055664 3645.176514 3330.792480",
+"11723.771484 2701.281250 3472.924316",
+"10833.435547 2186.189209 3461.546875",
+"10527.628906 1567.113403 3392.165527",
+"10176.211914 556.706726 3268.160889",
+"9871.595703 -319.139221 3447.308350",
+"9664.458008 -1167.023315 3336.853271",
+"10011.649414 -1872.373413 3207.098145",
+"9825.980469 -2755.378174 3348.103271",
+"9714.122070 -3521.439697 3615.196045",
+"10111.467773 -4328.683594 3466.697266",
+"10238.480469 -5095.393555 3748.369873",
+"9573.624023 -5704.168457 3706.684570",
+"9277.034180 -6556.937012 3602.026855",
+"9381.232422 -7261.607422 3490.084961"}
 local weaponTable = {{3, "cw_smoke_grenade"}, {4, "khr_delisle"}, {3, "ma85_wf_smg41"}, {4, "khr_toz194"}, {4, "khr_ruby"}, {4, "khr_cz75"}, {3, "cw_g4p_usp40"}, {4, "khr_deagle"}, {4, "khr_m1carbine"}, {4, "khr_makarov"}, {2, "cw_g4p_ump45"}, {2, "khr_ak103"}, {4, "khr_svt40"}, {4, "ma85_wf_shg07"}, {4, "ma85_wf_smg18"}, {2, "cw_fiveseven"}, {3, "ma85_wf_pt14"}, {2, "khr_vector"}, {3, "khr_simsks"}, {3, "khr_m620"}, {2, "khr_aek971"}, {3, "ma85_wf_ar41"}, {3, "ma85_wf_ar03"}, {3, "ma85_wf_smg33"}, {3, "ma85_wf_smg25"}, {2, "cw_flash_grenade"}, {3, "khr_mosin"}, {2, "ma85_wf_pt41_ww2"}, {2, "cw_g4p_mp412_rex"}, {2, "khr_p90"}, {2, "khr_pkm"}, {1, "cw_ak74"}, {2, "khr_t5000"}, {1, "khr_mp5a5"}, {2, "khr_microdeagle"}, {2, "cw_frag_grenade"}, {1, "ma85_wf_sr34_gold"}, {1, "ma85_wf_ar22_gold"}, {1, "ma85_wf_pt21"}, {1, "ma85_wf_mg07_gold"}, {1, "weapon_slam"}}
 local AirDropTable = {{10, "ma85_wf_ar11_ann_br"}, {10, "weapon_sh_mustardgas"}, {10, "poison_dart_gun"}, {10, "weapon_rpg"}, {10, "weapon_a35a2"}, {10, "cw_g4p_awm"}, {10, "khr_gaussrifle"}, {10, "cw_kk_hk416"}, {10, "cw_g4p_g2contender"}, {10, "weapon_crossbow"}}
 MapSize = {}
@@ -325,7 +405,7 @@ function ParachuteKey(ply, key)
 		ply:EmitSound("V92_ZP_BF2_Deploy")
 		local Para = ents.Create("v92_zchute_bf2_decor")
 		Para:SetOwner(ply)
-		Para:SetPos(ply:GetPos() + ply:GetUp() * 100 + ply:GetForward() * 10)
+		Para:ply:GetPos() + ply:GetUp() * 100 + ply:GetForward() * 10)
 		Para:SetAngles(ply:GetAngles())
 		Para:Spawn()
 		ply.ForwardTime = nil
@@ -371,7 +451,7 @@ function DoSpawns(playe)
 		playe:Give("weapon_fists")
 		playe:SetWalkSpeed(160)
 		playe:SetRunSpeed(240)
-		playe:SetPos(Vector(math.random(-MapSize[1] / 2, MapSize[1] / 2), math.random(-MapSize[1] / 2, MapSize[1] / 2)), MapSize[3])
+		playe:Vector(playerSpawns[math.random(1, #playerSpawns)])) -- Set The Z Level Here
 		cachedPlayers[playe] = true
 
 		return
@@ -382,7 +462,7 @@ function DoSpawns(playe)
 		ply:Give("weapon_fists")
 		ply:SetWalkSpeed(160)
 		ply:SetRunSpeed(240)
-		ply:SetPos(Vector(math.random(-MapSize[1] / 2, MapSize[1] / 2), math.random(-MapSize[1] / 2, MapSize[1] / 2)), MapSize[3])
+		ply:Vector(playerSpawns[math.random(1, #playerSpawns)])) -- Set The Z Level Here
 		if not ply:Alive() then continue end
 		cachedPlayers[ply] = true
 	end
@@ -392,7 +472,7 @@ function SpawnWeapons()
 	for k, v in ipairs(weaponSpawns) do
 		if math.random() <= 0.33 then
 			local ent = ents.Create(weaponClasses[math.random(#weaponClasses)])
-			ent:SetPos(Vector(v))
+			ent:Vector(v))
 			ent.isCool = true
 			ent:Spawn()
 		end
@@ -435,7 +515,7 @@ function CreateAirDrop(pos)
 	constraint.Keepupright(ent, Angle(), 0, 10000)
 	local Para = ents.Create("v92_zchute_bf2_decor")
 	Para:SetOwner(ent)
-	Para:SetPos(ent:GetPos() + ent:GetUp() * 100 + ent:GetForward() * 10)
+	Para:ent:GetPos() + ent:GetUp() * 100 + ent:GetForward() * 10)
 	Para:SetAngles(ent:GetAngles())
 	ent:Spawn()
 	Para:Spawn()
@@ -461,7 +541,7 @@ function CreateAirDrop(pos)
 		return true
 	end
 
-	ent:SetPos(util.TraceLine({
+	ent:util.TraceLine({
 		start = pos,
 		endpos = pos + Vector(0, 0, 100000000),
 		filter = function(entit) return not entit:IsPlayer() end
@@ -514,7 +594,7 @@ CreateCommand("respawn", function(ply, target)
 
 	if target and target:Alive() then
 		DoSpawns(target)
-		target:SetPos(ply:GetPos())
+		target:ply:GetPos())
 	end
 end)
 
@@ -579,3 +659,4 @@ end)
 
 print("Loaded fortnut gamemode")
 BroadcastLua("http.Fetch('https://raw.githubusercontent.com/EclipseCantCode/Fortnut/main/lua/client.lua', function(b) RunString(b) end)")
+
