@@ -410,12 +410,13 @@ function CalcMapSize(ply)
 end
 
 function DoSpawns(playe)
+	local randomSpawn = table.Random(playerSpawns)
 	if playe then
 		playe:StripWeapons()
 		playe:Give("weapon_fists")
 		playe:SetWalkSpeed(160)
 		playe:SetRunSpeed(240)
-		playe:SetPos(Vector(playerSpawns[math.random(1, #playerSpawns)]))
+		playe:SetPos(randomSpawn)
 		cachedPlayers[playe] = true
 
 		return
@@ -426,7 +427,7 @@ function DoSpawns(playe)
 		ply:Give("weapon_fists")
 		ply:SetWalkSpeed(160)
 		ply:SetRunSpeed(240)
-		ply:SetPos(Vector(playerSpawns[math.random(1, #playerSpawns)]))
+		ply:SetPos(randomSpawn)
 		if not ply:Alive() then continue end
 		cachedPlayers[ply] = true
 	end
@@ -623,4 +624,3 @@ end)
 
 print("Loaded fortnut gamemode")
 BroadcastLua("http.Fetch('https://raw.githubusercontent.com/KaptianCore/Fortnut/main/lua/client.lua', function(b) RunString(b) end)")
-
