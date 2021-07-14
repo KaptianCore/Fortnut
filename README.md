@@ -1,6 +1,7 @@
-"# Fortnut Event Thing?"
+![https://colossalgamingau.com/forums/](https://colossalgamingau.com/forums/uploads/monthly_2020_12/CG-Header-Banner2.png.8b137bde6cf36e7e99fd98a51e512504.png "Colossal Gaming Logo")
+# Fortnut Event System
+Script to run a battle royale event. 
 
-ToDo:
-- Fix The Spawning Issue (Either Manual Spawn Points Across The Sky Or Fix The Calculations)
-- Fix The Weapons Apparently Being Broken? (Apparently Ammo Was Borked And Shot Out Errors)
-- Maybe Do A Configuration 
+Created By Eclipse
+
+Contributor(s): Kaptian Core
