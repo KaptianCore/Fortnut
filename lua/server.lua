@@ -540,6 +540,10 @@ function CreateAirDrop(pos)
 	end)
 end
 
+function alivePlayers()
+	-- also add a timer to call this every 5 seconds, check cached players
+end
+
 local commands = {}
 
 local function CreateCommand(string, callback, check)
