@@ -340,7 +340,7 @@ function ParachuteKey(ply, key)
 		ply:EmitSound("V92_ZP_BF2_Deploy")
 		local Para = ents.Create("v92_zchute_bf2_decor")
 		Para:SetOwner(ply)
-		Para(ply:GetPos() + ply:GetUp() * 100 + ply:GetForward() * 10)
+		Para:SetPos(ply:GetPos() + ply:GetUp() * 100 + ply:GetForward() * 10)
 		Para:SetAngles(ply:GetAngles())
 		Para:Spawn()
 		ply.ForwardTime = nil
@@ -410,7 +410,6 @@ function SpawnWeapons()
 		local randomWeapon = table.Random(weaponTable)
 		if math.random(0, 100) < 51 then
 			local ent = ents.Create(randomWeapon)
-			print(randomWeapon)
 			timer.Simple(0.1, function()
 				ent:SetPos(Vector(v))
 				ent.isCool = true
@@ -457,7 +456,7 @@ function CreateAirDrop(pos)
 	constraint.Keepupright(ent, Angle(), 0, 10000)
 	local Para = ents.Create("v92_zchute_bf2_decor")
 	Para:SetOwner(ent)
-	Para(ent:GetPos() + ent:GetUp() * 100 + ent:GetForward() * 10)
+	Para:SetPos(ent:GetPos() + ent:GetUp() * 100 + ent:GetForward() * 10)
 	Para:SetAngles(ent:GetAngles())
 	ent:Spawn()
 	Para:Spawn()
@@ -483,7 +482,7 @@ function CreateAirDrop(pos)
 		return true
 	end
 
-	ent(util.TraceLine({
+	ent:SetPos(util.TraceLine({
 		start = pos,
 		endpos = pos + Vector(0, 0, 100000000),
 		filter = function(entit) return not entit:IsPlayer() end
@@ -536,7 +535,7 @@ CreateCommand("respawn", function(ply, target)
 
 	if target and target:Alive() then
 		DoSpawns(target)
-		target(ply:GetPos())
+		target:SetPos(ply:GetPos())
 	end
 end)
 

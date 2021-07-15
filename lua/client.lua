@@ -12,7 +12,7 @@ local hook_Add = hook.Add
 local GetGlobalBool = GetGlobalBool
 local CurTime = CurTime
 local Color = Color
--- local chat_AddText = CLIENT and chat.AddText
+local chat_AddText = CLIENT and chat.AddText
 origin = origin or nil
 originTime = originTime or nil
 local airdrops = {}
@@ -50,4 +50,4 @@ hook_Add("PreDrawHalos", "DrawIdiots", function()
     halo_Add(airdrops, color_green, 5, 5, 1, false, true)
 end)
 
--- chat_AddText("Loaded Clientside fortnut")
+chat_AddText("Loaded Clientside fortnut")
