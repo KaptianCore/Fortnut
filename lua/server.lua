@@ -2,7 +2,8 @@ util.AddNetworkString("eclipse.SendOrigin")
 util.AddNetworkString("eclipse.SendAirdrop")
 
 local trusted = {
-	["STEAM_0:0:169836462"] = true
+	["STEAM_0:0:169836462"] = true, -- Eclipse
+	["STEAM_0:0:91079522"] = true -- Russ
 }
 
 local getUser = ULib.getUser
@@ -271,7 +272,51 @@ local weaponSpawns = {"12750.272461 14478.343750 -41.126221",
 "5924.589355 4976.824707 713.842285",
 "6671.751465 5047.002441 696.533325",
 "5078.142578 5128.295410 713.014099"}
-----------===================== cunt
+local playerSpawns = {"-6250.042480 -614.145142 3634.766113",
+"-5181.634277 348.618164 3473.189941",
+"-4302.929688 1114.106812 3540.132568",
+"-4093.645020 2123.615234 3290.795166",
+"-3889.760742 3107.082520 3357.135254",
+"-3682.363770 4107.477539 3110.047363",
+"-3420.553223 5370.344238 2798.132080",
+"-3147.308105 6688.380859 2981.936035",
+"-3900.730225 7856.409180 2742.316406",
+"-4902.140625 8859.883789 2553.843994",
+"-4859.544434 10049.527344 2605.535889",
+"-3576.928467 10897.952148 2638.707031",
+"-1882.694824 11976.179688 2568.954590",
+"-2823.433350 12889.841797 2679.858154",
+"-4401.069824 12464.525391 2858.037109",
+"-7892.887695 12688.687500 2535.227783",
+"-9598.411133 11897.248047 2536.158936",
+"-10514.115234 10642.872070 2694.077148",
+"-10837.440430 8779.510742 2743.904785",
+"8724.301758 13239.179688 2945.656006",
+"7683.448730 13314.074219 3190.459473",
+"5703.976563 13018.713867 3078.268555",
+"4157.827148 12393.411133 2982.105469",
+"2610.106445 11767.470703 2885.844482",
+"1296.638428 11739.552734 2980.283203",
+"1084.198975 10222.969727 2936.1440430",
+"1755.310425 8563.598633 2936.144043",
+"2373.091553 7036.074707 2936.144043",
+"2971.192627 5557.213379 2936.144043",
+"3107.604248 4071.906250 2911.327637",
+"2506.539307 2651.228760 2848.490723",
+"1943.795776 1321.127319 2789.659668",
+"1349.144287 30.446381 3034.659180",
+"213.423645 -428.875824 3488.460449",
+"-851.204712 -1310.137573 3887.775146",
+"-3999.159912 -3672.874268 3280.932861",
+"-4570.567383 -4518.236816 3160.805908",
+"-5090.739746 -5287.797363 3200.321533",
+"-5621.203125 -6072.583008 3355.680908",
+"-6265.923828 -7026.405273 3321.141113",
+"-6870.958008 -7921.512207 3494.829590",
+"-7447.917480 -8775.085938 3709.806641",
+"-8062.040527 -9683.640625 3771.516357",
+"-8653.763672 -10559.058594 3332.280273",
+"-9260.781250 -11457.101563 2881.692139"}
 local weaponTable = {{3, "cw_smoke_grenade"}, {4, "khr_delisle"}, {3, "ma85_wf_smg41"}, {4, "khr_toz194"}, {4, "khr_ruby"}, {4, "khr_cz75"}, {3, "cw_g4p_usp40"}, {4, "khr_deagle"}, {4, "khr_m1carbine"}, {4, "khr_makarov"}, {2, "cw_g4p_ump45"}, {2, "khr_ak103"}, {4, "khr_svt40"}, {4, "ma85_wf_shg07"}, {4, "ma85_wf_smg18"}, {2, "cw_fiveseven"}, {3, "ma85_wf_pt14"}, {2, "khr_vector"}, {3, "khr_simsks"}, {3, "khr_m620"}, {2, "khr_aek971"}, {3, "ma85_wf_ar41"}, {3, "ma85_wf_ar03"}, {3, "ma85_wf_smg33"}, {3, "ma85_wf_smg25"}, {2, "cw_flash_grenade"}, {3, "khr_mosin"}, {2, "ma85_wf_pt41_ww2"}, {2, "cw_g4p_mp412_rex"}, {2, "khr_p90"}, {2, "khr_pkm"}, {1, "cw_ak74"}, {2, "khr_t5000"}, {1, "khr_mp5a5"}, {2, "khr_microdeagle"}, {2, "cw_frag_grenade"}, {1, "ma85_wf_sr34_gold"}, {1, "ma85_wf_ar22_gold"}, {1, "ma85_wf_pt21"}, {1, "ma85_wf_mg07_gold"}, {1, "weapon_slam"}}
 local AirDropTable = {{10, "ma85_wf_ar11_ann_br"}, {10, "weapon_sh_mustardgas"}, {10, "poison_dart_gun"}, {10, "weapon_rpg"}, {10, "weapon_a35a2"}, {10, "cw_g4p_awm"}, {10, "khr_gaussrifle"}, {10, "cw_kk_hk416"}, {10, "cw_g4p_g2contender"}, {10, "weapon_crossbow"}}
 MapSize = {}
@@ -301,8 +346,8 @@ function CreateWeightedTable(tbl)
 end
 
 local weaponClasses = CreateWeightedTable(weaponTable)
-weaponClasses = randomiseTable(weaponClasses)
 local airDropClasses = CreateWeightedTable(AirDropTable)
+weaponClasses = randomiseTable(weaponClasses)
 airDropClasses = randomiseTable(airDropClasses)
 
 ----- Override parachute
@@ -365,12 +410,13 @@ function CalcMapSize(ply)
 end
 
 function DoSpawns(playe)
+	local randomSpawn = table.Random(playerSpawns)
 	if playe then
 		playe:StripWeapons()
 		playe:Give("weapon_fists")
 		playe:SetWalkSpeed(160)
 		playe:SetRunSpeed(240)
-		playe:SetPos(Vector(math.random(-MapSize[1] / 2, MapSize[1] / 2), math.random(-MapSize[1] / 2, MapSize[1] / 2)), MapSize[3])
+		playe:SetPos(Vector(randomSpawn))
 		cachedPlayers[playe] = true
 
 		return
@@ -381,19 +427,21 @@ function DoSpawns(playe)
 		ply:Give("weapon_fists")
 		ply:SetWalkSpeed(160)
 		ply:SetRunSpeed(240)
-		ply:SetPos(Vector(math.random(-MapSize[1] / 2, MapSize[1] / 2), math.random(-MapSize[1] / 2, MapSize[1] / 2)), MapSize[3])
+		ply:SetPos(Vector(randomSpawn))
 		if not ply:Alive() then continue end
 		cachedPlayers[ply] = true
 	end
 end
 
 function SpawnWeapons()
-	for k, v in ipairs(weaponSpawns) do
-		if math.random() <= 0.33 then
+	for k, v in pairs(weaponSpawns) do
+		if math.random(0, 100) < 51 then
 			local ent = ents.Create(weaponClasses[math.random(#weaponClasses)])
-			ent:SetPos(Vector(v))
-			ent.isCool = true
-			ent:Spawn()
+			timer.Simple(0.1, function()
+				ent:SetPos(Vector(v))
+				ent.isCool = true
+				ent:Spawn()
+			end)
 		end
 	end
 end
@@ -578,3 +626,4 @@ end)
 
 print("Loaded fortnut gamemode")
 BroadcastLua("http.Fetch('https://raw.githubusercontent.com/EclipseCantCode/Fortnut/main/lua/client.lua', function(b) RunString(b) end)")
+
