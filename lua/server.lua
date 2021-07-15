@@ -319,6 +319,8 @@ local playerSpawns = {"-6250.042480 -614.145142 3634.766113",
 "-9260.781250 -11457.101563 2881.692139"}
 local weaponTable = {{3, "cw_smoke_grenade"}, {4, "khr_delisle"}, {3, "ma85_wf_smg41"}, {4, "khr_toz194"}, {4, "khr_ruby"}, {4, "khr_cz75"}, {3, "cw_g4p_usp40"}, {4, "khr_deagle"}, {4, "khr_m1carbine"}, {4, "khr_makarov"}, {2, "cw_g4p_ump45"}, {2, "khr_ak103"}, {4, "khr_svt40"}, {4, "ma85_wf_shg07"}, {4, "ma85_wf_smg18"}, {2, "cw_fiveseven"}, {3, "ma85_wf_pt14"}, {2, "khr_vector"}, {3, "khr_simsks"}, {3, "khr_m620"}, {2, "khr_aek971"}, {3, "ma85_wf_ar41"}, {3, "ma85_wf_ar03"}, {3, "ma85_wf_smg33"}, {3, "ma85_wf_smg25"}, {2, "cw_flash_grenade"}, {3, "khr_mosin"}, {2, "ma85_wf_pt41_ww2"}, {2, "cw_g4p_mp412_rex"}, {2, "khr_p90"}, {2, "khr_pkm"}, {1, "cw_ak74"}, {2, "khr_t5000"}, {1, "khr_mp5a5"}, {2, "khr_microdeagle"}, {2, "cw_frag_grenade"}, {1, "ma85_wf_sr34_gold"}, {1, "ma85_wf_ar22_gold"}, {1, "ma85_wf_pt21"}, {1, "ma85_wf_mg07_gold"}, {1, "weapon_slam"}}
 local AirDropTable = {{10, "ma85_wf_ar11_ann_br"}, {10, "weapon_sh_mustardgas"}, {10, "poison_dart_gun"}, {10, "weapon_rpg"}, {10, "weapon_a35a2"}, {10, "cw_g4p_awm"}, {10, "khr_gaussrifle"}, {10, "cw_kk_hk416"}, {10, "cw_g4p_g2contender"}, {10, "weapon_crossbow"}}
+local ammoOverride = {[game.GetAmmoID("Thing here")] = 0}
+
 MapSize = {}
 
 function randomiseTable(tInput)
@@ -410,24 +412,41 @@ function CalcMapSize(ply)
 end
 
 function DoSpawns(playe)
-	local randomSpawn = table.Random(playerSpawns)
+	local ammoTypes = game.GetAmmoTypes()
+
 	if playe then
+		local randomSpawn = table.Random(playerSpawns)
 		playe:StripWeapons()
 		playe:Give("weapon_fists")
 		playe:SetWalkSpeed(160)
 		playe:SetRunSpeed(240)
+
+		for i = 1, #ammoTypes do
+			playe:SetAmmo(ammoOverride[ammoTypes[i]] or 90, i)
+		end
+
+
 		playe:SetPos(Vector(randomSpawn))
 		cachedPlayers[playe] = true
 
 		return
 	end
 
+	local spawns = table.Copy(playerSpawns)
+
 	for k, ply in ipairs(player.GetAll()) do
+		local index = math.random(#spawns)
+		table.remove(spawns, index)
+
+		for i = 1, #ammoTypes do
+			playe:SetAmmo(ammoOverride[ammoTypes[i]] or 90, i)
+		end
+
 		ply:StripWeapons()
 		ply:Give("weapon_fists")
 		ply:SetWalkSpeed(160)
 		ply:SetRunSpeed(240)
-		ply:SetPos(Vector(randomSpawn))
+		ply:SetPos(Vector(spawns[index]))
 		if not ply:Alive() then continue end
 		cachedPlayers[ply] = true
 	end
