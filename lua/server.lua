@@ -592,7 +592,7 @@ end)
 CreateCommand("respawn", function(ply, target)
 	target = getUser(target, true, ply)
 	cachedPlayers[target] = true
-	ply:ChatPrint("Player " .. ply:Nick() .. "Has Been Put Back Into The Game!")
+	ply:ChatPrint("Player " .. ply:Nick() .. " Has Been Put Back Into The Game!")
 	if target and target:Alive() then
 		DoSpawns(target)
 		target:SetPos(ply:GetPos())
@@ -648,7 +648,7 @@ hook.Add("PlayerDeath", "CuntDiedLmao", function(ply, inflictor, attacker)
 	local alivePlayerCheck = alivePlayer() -- use a variable as to not make the same function call more than once
 	if not isnumber( alivePlayerCheck ) and player.GetBySteamID64( alivePlayerCheck ):IsPlayer() then
 		ulx.csay(nil, "Player " .. alivePlayers() .. " Wins! Round Over!", white)
-		RemoveTimer(player.GetAll(), "Fortnut")
+		RemoveTimer("Fortnut")
 	end
 end)
 
