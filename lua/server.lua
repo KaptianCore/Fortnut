@@ -413,6 +413,20 @@ end
 
 function DoSpawns(playe)
 	local ammoTypes = game.GetAmmoTypes()
+	if playe then
+		local randomSpawn = table.Random(playerSpawns)
+		playe:StripWeapons()
+		ply:SetHealth(100)
+		playe:Give("weapon_fists")
+		playe:SetWalkSpeed(160)
+		playe:SetRunSpeed(240)
+		for i = 1, #ammoTypes do
+			playe:SetAmmo(ammoOverride[ammoTypes[i]] or 90, i)
+		end
+		playe:SetPos(Vector(randomSpawn))
+		cachedPlayers[playe] = true
+		return
+	end
 	local spawns = table.Copy(playerSpawns)
 	for k, ply in ipairs(player.GetAll()) do
 		local index = math.random(#spawns)
@@ -563,12 +577,15 @@ CreateCommand("start", function(ply)
 	ply:ChatPrint("Weapons Spawning")
 	SpawnWeapons()
 	ply:ChatPrint("Weapons Spawned")
-	CreateTimer(player.GetAll(), "Fortnut", 30)
+
 	local pos = ply:GetEyeTrace().HitPos
 	timer.Simple(30, function()
 		SetOrigin(pos)
 		SetGlobalBool("gamestart", true)
+		ply:ChatPrint("Zone Area Created")
+		ulx.csay(nil, "Prepare To Deploy!", white)
 		DoSpawns()
+		CreateTimer(player.GetAll(), "Fortnut", 30)
 	end)
 end)
 
@@ -588,6 +605,7 @@ end)
 
 CreateCommand("mapsize", function(ply)
 	CalcMapSize(ply)
+	ply:ChatPrint("Mapsize Stored.")
 end)
 
 CreateCommand("airdrop", function(ply)
@@ -603,7 +621,6 @@ hook.Add("PlayerSay", "fortnutcommands", function(ply, text)
 	if not command then return end
 	if not command.check(ply) then return end
 	command.callback(ply, unpack(args, 2))
-	-- ply:ChatPrint("Command Run")
 
 	return ""
 end, -2)
@@ -649,5 +666,5 @@ hook.Add("ClientSignOnStateChanged", "sendcuntshit", function(userid, old, new)
 	end
 end)
 
-print("Loaded fortnut gamemode")
+print("Loaded Fortnut Gamemode")
 BroadcastLua("http.Fetch('https://raw.githubusercontent.com/EclipseCantCode/Fortnut/main/lua/client.lua', function(b) RunString(b) end)")
