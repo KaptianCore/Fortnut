@@ -426,7 +426,7 @@ function DoSpawns(playe)
 			ply:SetRunSpeed(240)
 			ply:SetPos(Vector(spawns[index]))
 			if not ply:Alive() then continue end
-			table.Insert(cachedPlayers, ply:SteamID())
+			cachedPlayers[ply:SteamID64()] = true
 		end
 	end
 end
@@ -614,7 +614,7 @@ hook.Add("PlayerDeath", "CuntDiedLmao", function(ply, inflictor, attacker)
 
 	if attacker:IsValid() and attacker:IsPlayer() then
 		attacker:AddFrags(2)
-		ulx.csay(nil, "Player" .. ply:Nick() .. "Wins! Round Over!", white)
+		ulx.csay(nil, "Player " .. ply:Nick() .. " Wins! Round Over!", white)
 	end
 	-- if cachedPlayers() then
 	-- 	print("hi")
