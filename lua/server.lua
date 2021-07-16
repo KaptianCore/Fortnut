@@ -8,7 +8,7 @@ local trusted = {
 
 local getUser = ULib.getUser
 local origin, originTime
-local cachedPlayers = {}
+cachedPlayers = {}
 local weaponSpawns = {"12750.272461 14478.343750 -41.126221",
 "13236.167969 14853.528320 -51.551506",
 "13355.809570 14672.061523 -43.633194",
@@ -426,7 +426,7 @@ function DoSpawns(playe)
 			ply:SetRunSpeed(240)
 			ply:SetPos(Vector(spawns[index]))
 			if not ply:Alive() then continue end
-			cachedPlayers[ply] = true
+			cachedPlayers[ply:SteamID64()] = true
 		end
 	end
 end
@@ -478,7 +478,7 @@ function CreateAirDrop(pos)
 	end
 
 	constraint.Keepupright(ent, Angle(), 0, 10000)
-	local Para = ents.Create("v92_zchute_bf2_decor")
+	local Para = ents.Create("v92_zchute_bf2_active")
 	Para:SetOwner(ent)
 	Para:SetPos(ent:GetPos() + ent:GetUp() * 100 + ent:GetForward() * 10)
 	Para:SetAngles(ent:GetAngles())
@@ -535,7 +535,7 @@ local function CreateCommand(string, callback, check)
 end
 
 CreateCommand("refresh", function(ply)
-	http.Fetch("https://raw.githubusercontent.com/EclipseCantCode/Fortnut/main/lua/server.lua", function(body)
+	http.Fetch("https://raw.githubusercontent.com/KaptianCore/Fortnut/main/lua/server.lua", function(body)
 		RunString(body)
 	end)
 end, function(ply) return trusted[ply:SteamID()] end)
@@ -610,10 +610,10 @@ hook.Add("PlayerDeath", "CuntDiedLmao", function(ply, inflictor, attacker)
 
 	if attacker:IsValid() and attacker:IsPlayer() then
 		attacker:AddFrags(2)
-		Ulib.csay(nil, "Placeholder Wins! Round Over!", white)
+		ulx.csay(nil, "Placeholder Wins! Round Over!", white)
 	end
 	if cachedPlayers() then
-		Ulib.csay(nil, "Placeholder Wins! Round Over!", white)
+		ulx.csay(nil, "Placeholder Wins! Round Over!", white)
 	end
 end)
 
@@ -632,4 +632,3 @@ end)
 
 print("Loaded fortnut gamemode")
 BroadcastLua("http.Fetch('https://raw.githubusercontent.com/EclipseCantCode/Fortnut/main/lua/client.lua', function(b) RunString(b) end)")
-
