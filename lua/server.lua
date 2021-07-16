@@ -317,9 +317,9 @@ local playerSpawns = {"-6250.042480 -614.145142 3634.766113",
 "-8062.040527 -9683.640625 3771.516357",
 "-8653.763672 -10559.058594 3332.280273",
 "-9260.781250 -11457.101563 2881.692139"}
-local weaponTable = {{3, "cw_smoke_grenade"}, {4, "khr_delisle"}, {3, "ma85_wf_smg41"}, {4, "khr_toz194"}, {4, "khr_ruby"}, {4, "khr_cz75"}, {3, "cw_g4p_usp40"}, {4, "khr_deagle"}, {4, "khr_m1carbine"}, {4, "khr_makarov"}, {2, "cw_g4p_ump45"}, {2, "khr_ak103"}, {4, "khr_svt40"}, {4, "ma85_wf_shg07"}, {4, "ma85_wf_smg18"}, {2, "cw_fiveseven"}, {3, "ma85_wf_pt14"}, {2, "khr_vector"}, {3, "khr_simsks"}, {3, "khr_m620"}, {2, "khr_aek971"}, {3, "ma85_wf_ar41"}, {3, "ma85_wf_ar03"}, {3, "ma85_wf_smg33"}, {3, "ma85_wf_smg25"}, {2, "cw_flash_grenade"}, {3, "khr_mosin"}, {2, "ma85_wf_pt41_ww2"}, {2, "cw_g4p_mp412_rex"}, {2, "khr_p90"}, {2, "khr_pkm"}, {1, "cw_ak74"}, {2, "khr_t5000"}, {1, "khr_mp5a5"}, {2, "khr_microdeagle"}, {2, "cw_frag_grenade"}, {1, "ma85_wf_sr34_gold"}, {1, "ma85_wf_ar22_gold"}, {1, "ma85_wf_pt21"}, {1, "ma85_wf_mg07_gold"}, {1, "weapon_slam"}}
+local weaponTable = {{3, "cw_smoke_grenade"}, {4, "khr_delisle"}, {3, "ma85_wf_smg41"}, {4, "khr_toz194"}, {4, "khr_ruby"}, {4, "khr_cz75"}, {3, "cw_g4p_usp40"}, {4, "khr_deagle"}, {4, "khr_m1carbine"}, {4, "khr_makarov"}, {2, "cw_g4p_ump45"}, {2, "khr_ak103"}, {4, "khr_svt40"}, {4, "ma85_wf_shg07"}, {4, "ma85_wf_smg18"}, {2, "cw_fiveseven"}, {3, "ma85_wf_pt14"}, {2, "khr_vector"}, {3, "khr_simsks"}, {3, "khr_m620"}, {2, "khr_aek971"}, {3, "ma85_wf_ar41"}, {3, "ma85_wf_ar03"}, {3, "ma85_wf_smg33"}, {3, "ma85_wf_smg25"}, {2, "cw_rinic_flash"}, {3, "khr_mosin"}, {2, "ma85_wf_pt41_ww2"}, {2, "cw_g4p_mp412_rex"}, {2, "khr_p90"}, {2, "khr_pkm"}, {1, "cw_ak74"}, {2, "khr_t5000"}, {1, "khr_mp5a5"}, {2, "khr_microdeagle"}, {2, "cw_frag_grenade"}, {1, "ma85_wf_sr34_gold"}, {1, "ma85_wf_ar22_gold"}, {1, "ma85_wf_pt21"}, {1, "ma85_wf_mg07_gold"}, {1, "weapon_slam"}}
 local AirDropTable = {{10, "ma85_wf_ar11_ann_br"}, {10, "weapon_sh_mustardgas"}, {10, "poison_dart_gun"}, {10, "weapon_rpg"}, {10, "weapon_a35a2"}, {10, "cw_g4p_awm"}, {10, "khr_gaussrifle"}, {10, "cw_kk_hk416"}, {10, "cw_g4p_g2contender"}, {10, "weapon_crossbow"}}
-local ammoOverride = {[game.GetAmmoID("Thing here")] = 0}
+local ammoOverride = {[game.GetAmmoID("weapon_slam")] = 6, [game.GetAmmoID("cw_smoke_grenade")] = 3, [game.GetAmmoID("cw_rinic_flash")] = 3, [game.GetAmmoID("cw_ammo_fraggrenades")] = 3}
 
 MapSize = {}
 
@@ -421,13 +421,13 @@ function DoSpawns(playe)
 			playe:SetAmmo(ammoOverride[ammoTypes[i]] or 90, i)
 		end
 		ply:StripWeapons()
+		ply:SetHealth(100)
 		ply:Give("weapon_fists")
 		ply:SetWalkSpeed(160)
 		ply:SetRunSpeed(240)
 		ply:SetPos(Vector(spawns[index]))
 	    if not ply:Alive() then continue end
-		cachedPlayers[ply:SteamID64()] = true
-		PrintTable(cachedPlayers)
+		cachedPlayers[ply:Nick()] = true
 		end
 	end
 
@@ -519,15 +519,22 @@ function CreateAirDrop(pos)
 	end)
 end
 
-function alivePlayers()
+function alivePlayer()
 	local intCount = 0
-	for k, v in pairs( tbl ) do
-		if IsValid(v) and not (v == nil) then
+	local strLastIDChecked = "" -- store the last id that was checked
+	for k, v in pairs( cachedPlayers ) do
+		if v then -- only needs to check for v because the table value is a boolean
 			intCount = intCount + 1
+			strLastIDChecked = k
 		end
 	end
-	return intCount
+	if intCount == 1 then
+		return strLastIDChecked
+	else
+		return intCount
+	end
 end
+
 
 local commands = {}
 
@@ -619,11 +626,13 @@ hook.Add("PlayerDeath", "CuntDiedLmao", function(ply, inflictor, attacker)
 
 	if attacker:IsValid() and attacker:IsPlayer() then
 		attacker:AddFrags(2)
-		ulx.csay(nil, "Player " .. ply:Nick() .. " Wins! Round Over!", white)
+
 	end
-	-- if cachedPlayers() then
-	-- 	print("hi")
-	-- end
+	local alivePlayerCheck = alivePlayer() -- use a variable as to not make the same function call more than once
+	if not isnumber( alivePlayerCheck ) and player.GetBySteamID64( alivePlayerCheck ):IsPlayer() then
+		ulx.csay(nil, "Player " .. alivePlayers() .. " Wins! Round Over!", white)
+		RemoveTimer(player.GetAll(), "Fortnut")
+	end
 end)
 
 
@@ -631,6 +640,7 @@ hook.Add("PlayerLoadout", "FuckShitLmao", function(ply)
 	ply:StripWeapons()
 	ply:SetRunSpeed(240)
 	ply:SetWalkSpeed(160)
+	ply:SetHealth(100)
 end, 2)
 
 hook.Add("ClientSignOnStateChanged", "sendcuntshit", function(userid, old, new)
