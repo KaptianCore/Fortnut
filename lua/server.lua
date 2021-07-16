@@ -413,6 +413,7 @@ end
 
 function DoSpawns(playe)
 	local ammoTypes = game.GetAmmoTypes()
+	local spawns = table.Copy(playerSpawns)
 	if playe then
 		for k, ply in ipairs(player.GetAll()) do
 			local index = math.random(#spawns)
@@ -552,7 +553,6 @@ CreateCommand("start", function(ply)
 	ply:ChatPrint("Weapons Spawned")
 	CreateTimer(player.GetAll(), "Fortnut", 30)
 	local pos = ply:GetEyeTrace().HitPos
-
 	timer.Simple(30, function()
 		SetOrigin(pos)
 		SetGlobalBool("gamestart", true)
