@@ -413,8 +413,8 @@ end
 
 function DoSpawns(playe)
 	local ammoTypes = game.GetAmmoTypes()
-	local spawns = table.Copy(playerSpawns)
 	if playe then
+		local spawns = table.Copy(playerSpawns)
 		for k, ply in ipairs(player.GetAll()) do
 			local index = math.random(#spawns)
 			table.remove(spawns, index)
