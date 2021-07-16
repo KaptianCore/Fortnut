@@ -427,6 +427,7 @@ function DoSpawns(playe)
 		ply:SetPos(Vector(spawns[index]))
 	    if not ply:Alive() then continue end
 		cachedPlayers[ply:SteamID64()] = true
+		PrintTable(cachedPlayers)
 		end
 	end
 
@@ -519,7 +520,13 @@ function CreateAirDrop(pos)
 end
 
 function alivePlayers()
-	-- also add a timer to call this every 5 seconds, check cached players
+	local intCount = 0
+	for k, v in pairs( tbl ) do
+		if IsValid(v) and not (v == nil) then
+			intCount = intCount + 1
+		end
+	end
+	return intCount
 end
 
 local commands = {}
@@ -541,7 +548,7 @@ end, function(ply) return trusted[ply:SteamID()] end)
 
 CreateCommand("start", function(ply)
 	if table.IsEmpty(MapSize) then
-		ply:ChatPrint("No Mapsize dumbcunt")
+		ply:ChatPrint("No Mapsize")
 
 		return
 	end
