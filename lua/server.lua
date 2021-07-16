@@ -581,7 +581,7 @@ end)
 
 CreateCommand("respawn", function(ply, target)
 	target = getUser(target, true, ply)
-
+	cachedPlayers[target] = true
 	if target and target:Alive() then
 		DoSpawns(target)
 		target:SetPos(ply:GetPos())
@@ -631,6 +631,10 @@ hook.Add("PlayerDeath", "CuntDiedLmao", function(ply, inflictor, attacker)
 
 	if attacker:IsValid() and attacker:IsPlayer() then
 		attacker:AddFrags(2)
+		Ulib.csay(nil, "Placeholder Wins! Round Over!", white)
+	end
+	if cachedPlayers() then
+		Ulib.csay(nil, "Placeholder Wins! Round Over!", white)
 	end
 end)
 
