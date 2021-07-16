@@ -8,7 +8,7 @@ local trusted = {
 
 local getUser = ULib.getUser
 local origin, originTime
-cachedPlayers = {}
+local cachedPlayers = {}
 local weaponSpawns = {"12750.272461 14478.343750 -41.126221",
 "13236.167969 14853.528320 -51.551506",
 "13355.809570 14672.061523 -43.633194",
