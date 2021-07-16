@@ -369,7 +369,7 @@ function ParachuteKey(ply, key)
 		ply.FlarePara = 1
 		ply:ViewPunch(Angle(35, 0, 0))
 		ply:EmitSound("V92_ZP_BF2_Deploy")
-		local Para = ents.Create("v92_zchute_bf2_decor")
+		local Para = ents.Create("v92_zchute_bf2_active")
 		Para:SetOwner(ply)
 		Para:SetPos(ply:GetPos() + ply:GetUp() * 100 + ply:GetForward() * 10)
 		Para:SetAngles(ply:GetAngles())
@@ -426,7 +426,7 @@ function DoSpawns(playe)
 			ply:SetRunSpeed(240)
 			ply:SetPos(Vector(spawns[index]))
 			if not ply:Alive() then continue end
-			cachedPlayers[ply:SteamID64()] = true
+			table.Insert(cachedPlayers, ply:SteamID())
 		end
 	end
 end
@@ -535,7 +535,7 @@ local function CreateCommand(string, callback, check)
 end
 
 CreateCommand("refresh", function(ply)
-	http.Fetch("https://raw.githubusercontent.com/KaptianCore/Fortnut/main/lua/server.lua", function(body)
+	http.Fetch("https://raw.githubusercontent.com/EclipseCantCode/Fortnut/main/lua/server.lua", function(body)
 		RunString(body)
 	end)
 end, function(ply) return trusted[ply:SteamID()] end)
@@ -546,8 +546,10 @@ CreateCommand("start", function(ply)
 
 		return
 	end
-
+	ply:ChatPrint("Battle Royale Starting")
+	ply:ChatPrint("Weapons Spawning")
 	SpawnWeapons()
+	ply:ChatPrint("Weapons Spawned")
 	CreateTimer(player.GetAll(), "Fortnut", 30)
 	local pos = ply:GetEyeTrace().HitPos
 
@@ -561,6 +563,7 @@ end)
 CreateCommand("respawn", function(ply, target)
 	target = getUser(target, true, ply)
 	cachedPlayers[target] = true
+	ply:ChatPrint("Player " .. ply:Nick() .. "Has Been Put Back Into The Game!")
 	if target and target:Alive() then
 		DoSpawns(target)
 		target:SetPos(ply:GetPos())
@@ -577,6 +580,7 @@ end)
 
 CreateCommand("airdrop", function(ply)
 	CreateAirDrop(ply:GetEyeTrace().HitPos)
+	ply:ChatPrint("Airdrop Inbound To Eyetrace")
 end)
 
 hook.Add("PlayerSay", "fortnutcommands", function(ply, text)
@@ -587,7 +591,7 @@ hook.Add("PlayerSay", "fortnutcommands", function(ply, text)
 	if not command then return end
 	if not command.check(ply) then return end
 	command.callback(ply, unpack(args, 2))
-	ply:ChatPrint("Did that shit lmao")
+	-- ply:ChatPrint("Command Run")
 
 	return ""
 end, -2)
@@ -610,11 +614,11 @@ hook.Add("PlayerDeath", "CuntDiedLmao", function(ply, inflictor, attacker)
 
 	if attacker:IsValid() and attacker:IsPlayer() then
 		attacker:AddFrags(2)
-		ulx.csay(nil, "Placeholder Wins! Round Over!", white)
+		ulx.csay(nil, "Player" .. ply:Nick() .. "Wins! Round Over!", white)
 	end
-	if cachedPlayers() then
-		ulx.csay(nil, "Placeholder Wins! Round Over!", white)
-	end
+	-- if cachedPlayers() then
+	-- 	print("hi")
+	-- end
 end)
 
 
