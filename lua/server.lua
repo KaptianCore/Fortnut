@@ -416,8 +416,9 @@ function DoSpawns(playe)
 	if playe then
 		local randomSpawn = table.Random(playerSpawns)
 		playe:StripWeapons()
-		ply:SetHealth(100)
+		playe:SetHealth(100)
 		playe:Give("weapon_fists")
+		playe:Give("cw_m1911")
 		playe:SetWalkSpeed(160)
 		playe:SetRunSpeed(240)
 		for i = 1, #ammoTypes do
@@ -428,20 +429,21 @@ function DoSpawns(playe)
 		return
 	end
 	local spawns = table.Copy(playerSpawns)
-	for k, ply in ipairs(player.GetAll()) do
+	for k, v in ipairs(player.GetAll()) do
 		local index = math.random(#spawns)
 		table.remove(spawns, index)
 		for i = 1, #ammoTypes do
 			playe:SetAmmo(ammoOverride[ammoTypes[i]] or 90, i)
 		end
-		ply:StripWeapons()
-		ply:SetHealth(100)
-		ply:Give("weapon_fists")
-		ply:SetWalkSpeed(160)
-		ply:SetRunSpeed(240)
-		ply:SetPos(Vector(spawns[index]))
+		v:StripWeapons()
+		v:SetHealth(100)
+		v:Give("weapon_fists")
+		v:Give("cw_m1911")
+		v:SetWalkSpeed(160)
+		v:SetRunSpeed(240)
+		v:SetPos(Vector(spawns[index]))
 	    if not ply:Alive() then continue end
-		cachedPlayers[ply:Nick()] = true
+		cachedPlayers[v] = true
 		end
 	end
 
