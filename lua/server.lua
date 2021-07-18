@@ -444,8 +444,8 @@ function DoSpawns(playe)
 		v:SetPos(Vector(spawns[index]))
 	    if not ply:Alive() then continue end
 		cachedPlayers[v] = true
-		end
 	end
+end
 
 function SpawnWeapons()
 	for k, v in pairs(weaponSpawns) do
