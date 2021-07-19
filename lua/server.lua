@@ -271,6 +271,23 @@ local weaponSpawns = {"12750.272461 14478.343750 -41.126221",
 "4997.617676 4351.006348 735.426880",
 "5924.589355 4976.824707 713.842285",
 "6671.751465 5047.002441 696.533325",
+"6052.351563 2909.356201 576.031250",
+"7345.409180 3395.314209 576.031250",
+"7320.864258 2738.291016 576.031250",
+"6188.736328 612.611267 560.031250",
+"6532.403320 -235.019806 560.031250",
+"6690.924805 290.909576 560.031250",
+"8947.990234 -1092.116577 706.115662",
+"9612.954102 -1182.788086 706.115662",
+"11075.857422 -265.572662 -59.750381",
+"10437.689453 -1713.604492 -63.161507",
+"1698.906860 -12234.216797 1138.061279",
+"1106.168335 -12040.091797 1143.678833",
+"708.932190 -12202.593750 1144.031250",
+"992.642883 -12282.488281 1144.031250",
+"-708.059509 -11046.099609 543.506592",
+"-3278.371338 -6900.169922 513.695801",
+"-6301.896973 -4552.559570 410.525909",
 "5078.142578 5128.295410 713.014099"}
 local playerSpawns = {"-6250.042480 -614.145142 3634.766113",
 "-5181.634277 348.618164 3473.189941",
@@ -575,19 +592,19 @@ CreateCommand("start", function(ply)
 
 		return
 	end
+	ply:ChatPrint("Battle Royale Starting")
+	ply:ChatPrint("Weapons Spawning")
+	SpawnWeapons()
+	ply:ChatPrint("Weapons Spawned")
 
 	local pos = ply:GetEyeTrace().HitPos
 	timer.Simple(30, function()
-		ply:ChatPrint("Battle Royale Starting")
-		ply:ChatPrint("Weapons Spawning")
-		SpawnWeapons()
-		ply:ChatPrint("Weapons Spawned")	
 		SetOrigin(pos)
 		SetGlobalBool("gamestart", true)
 		ply:ChatPrint("Zone Area Created")
-		ulx.csay(nil, "Prepare To Deploy!", white)
 		DoSpawns()
-		CreateTimer(player.GetAll(), "Fortnut", 30)
+		PrintTable(cachedPlayers)
+--      CreateTimer(player.GetAll(), "Fortnut", 30)
 	end)
 end)
 
@@ -641,14 +658,14 @@ timer.Create("DoFuckedCuntDamage", 3, -1, function()
 end)
 
 hook.Add("PlayerDeath", "CuntDiedLmao", function(ply, inflictor, attacker)
-	cachedPlayers[ply] = nil
-
+	cachedPlayers[ply] = false
+	PrintTable(cachedPlayers)
 	if attacker:IsValid() and attacker:IsPlayer() then
 		attacker:AddFrags(2)
 
 	end
 	local alivePlayerCheck = alivePlayer() -- use a variable as to not make the same function call more than once
-	if not isnumber( alivePlayerCheck ) and player.GetBySteamID64( alivePlayerCheck ):IsPlayer() then
+	if not isnumber( alivePlayerCheck ) and ply( alivePlayerCheck ):IsPlayer() then
 		ulx.csay(nil, "Player " .. alivePlayers() .. " Wins! Round Over!", white)
 		RemoveTimer("Fortnut")
 	end
