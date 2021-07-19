@@ -575,13 +575,13 @@ CreateCommand("start", function(ply)
 
 		return
 	end
-	ply:ChatPrint("Battle Royale Starting")
-	ply:ChatPrint("Weapons Spawning")
-	SpawnWeapons()
-	ply:ChatPrint("Weapons Spawned")
 
 	local pos = ply:GetEyeTrace().HitPos
 	timer.Simple(30, function()
+		ply:ChatPrint("Battle Royale Starting")
+		ply:ChatPrint("Weapons Spawning")
+		SpawnWeapons()
+		ply:ChatPrint("Weapons Spawned")	
 		SetOrigin(pos)
 		SetGlobalBool("gamestart", true)
 		ply:ChatPrint("Zone Area Created")
