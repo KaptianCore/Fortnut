@@ -672,7 +672,7 @@ hook.Add("PlayerDeath", "CuntDiedLmao", function(ply, inflictor, attacker)
 
 	end
 	local alivePlayerCheck = alivePlayer() -- use a variable as to not make the same function call more than once
-	if not isnumber( alivePlayerCheck ) and ply( alivePlayerCheck ):IsPlayer() then
+	if not isnumber( alivePlayerCheck ) and (alivePlayerCheck):IsPlayer() then
 		ulx.csay(nil, "Player " .. alivePlayers() .. " Wins! Round Over!", white)
 		RemoveTimer("Fortnut")
 	end
