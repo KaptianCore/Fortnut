@@ -432,8 +432,7 @@ function CalcMapSize(ply)
 
 	MapSize = {x - 500, y - 500, z - 100}
 end
-
-function DoSpawns(playe)
+function RespawnPlayer(playe)
 	local ammoTypes = game.GetAmmoTypes()
 	if playe then
 		local randomSpawn = table.Random(playerSpawns)
@@ -450,6 +449,9 @@ function DoSpawns(playe)
 		cachedPlayers[playe] = true
 		return
 	end
+end
+function DoSpawns(playe)
+	local ammoTypes = game.GetAmmoTypes()
 	local spawns = table.Copy(playerSpawns)
 	for k, v in ipairs(player.GetAll()) do
 		local index = math.random(#spawns)
@@ -618,7 +620,7 @@ CreateCommand("respawn", function(ply, target)
 	cachedPlayers[target] = true
 	ply:ChatPrint("Player " .. ply:Nick() .. " Has Been Put Back Into The Game!")
 	if target and target:Alive() then
-		DoSpawns(target)
+		RespawnPlayer(target)
 		target:SetPos(ply:GetPos())
 	end
 end)
