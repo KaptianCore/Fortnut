@@ -457,7 +457,7 @@ function DoSpawns(playe)
 		local index = math.random(#spawns)
 		table.remove(spawns, index)
 		for i = 1, #ammoTypes do
-			playe:SetAmmo(ammoOverride[ammoTypes[i]] or 90, i)
+			v:SetAmmo(ammoOverride[ammoTypes[i]] or 90, i)
 		end
 		v:StripWeapons()
 		v:SetHealth(100)
