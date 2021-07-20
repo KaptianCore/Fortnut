@@ -391,7 +391,7 @@ function ParachuteKey(ply, key)
 		ply.FlarePara = 1
 		ply:ViewPunch(Angle(35, 0, 0))
 		ply:EmitSound("V92_ZP_BF2_Deploy")
-		local Para = ents.Create("v92_zchute_bf2_active")
+		local Para = ents.Create("v92_zchute_bf2_decor")
 		Para:SetOwner(ply)
 		Para:SetPos(ply:GetPos() + ply:GetUp() * 100 + ply:GetForward() * 10)
 		Para:SetAngles(ply:GetAngles())
@@ -466,9 +466,8 @@ function DoSpawns(playe)
 		v:SetWalkSpeed(160)
 		v:SetRunSpeed(240)
 		v:SetPos(Vector(spawns[index]))
-	    if ply:Alive() then
-			cachedPlayers[v] = true
-		end
+		if not v:Alive() then continue end
+		cachedPlayers[v] = true
 	end
 end
 
@@ -519,7 +518,7 @@ function CreateAirDrop(pos)
 	end
 
 	constraint.Keepupright(ent, Angle(), 0, 10000)
-	local Para = ents.Create("v92_zchute_bf2_active")
+	local Para = ents.Create("v92_zchute_bf2_decor")
 	Para:SetOwner(ent)
 	Para:SetPos(ent:GetPos() + ent:GetUp() * 100 + ent:GetForward() * 10)
 	Para:SetAngles(ent:GetAngles())
