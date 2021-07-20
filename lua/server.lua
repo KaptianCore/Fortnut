@@ -466,8 +466,9 @@ function DoSpawns(playe)
 		v:SetWalkSpeed(160)
 		v:SetRunSpeed(240)
 		v:SetPos(Vector(spawns[index]))
-	    if not ply:Alive() then continue end
-		cachedPlayers[v] = true
+	    if ply:Alive() then
+			cachedPlayers[v] = true
+		end
 	end
 end
 
