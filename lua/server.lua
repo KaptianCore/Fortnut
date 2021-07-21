@@ -610,7 +610,6 @@ CreateCommand("start", function(ply)
 		SetGlobalBool("gamestart", true)
 		ply:ChatPrint("Zone Area Created")
 		DoSpawns()
-		PrintTable(cachedPlayers)
 --      CreateTimer(player.GetAll(), "Fortnut", 30)
 	end)
 end)
@@ -666,15 +665,19 @@ end)
 
 hook.Add("PlayerDeath", "CuntDiedLmao", function(ply, inflictor, attacker)
 	cachedPlayers[ply] = false
-	PrintTable(cachedPlayers)
 	if attacker:IsValid() and attacker:IsPlayer() then
-		attacker:AddFrags(2)
+		attacker:AddFrags(1)
 
 	end
 	local alivePlayerCheck = alivePlayer() -- use a variable as to not make the same function call more than once
 	if not isnumber( alivePlayerCheck ) and alivePlayerCheck:IsPlayer() then
 		ulx.csay(nil, "Player " .. alivePlayerCheck:Nick() .. " Wins! Round Over!", white)
 		RemoveTimer("Fortnut")
+		alivePlayerCheck:KillSilent()
+		-- loop to remove guns
+		for k, v in pairs(ents.GetAll()) do
+			print("placeholder") -- check if weapon then remove
+		end
 	end
 end)
 
