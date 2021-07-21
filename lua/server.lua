@@ -676,7 +676,9 @@ hook.Add("PlayerDeath", "CuntDiedLmao", function(ply, inflictor, attacker)
 		alivePlayerCheck:KillSilent()
 		-- loop to remove guns
 		for k, v in pairs(ents.GetAll()) do
-			print("placeholder") -- check if weapon then remove
+			if v:IsWeapon() then
+				print("placeholder") -- remove 
+			end
 		end
 	end
 end)
