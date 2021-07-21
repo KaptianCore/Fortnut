@@ -665,11 +665,6 @@ end)
 
 hook.Add("PlayerDeath", "CuntDiedLmao", function(ply, inflictor, attacker)
 	cachedPlayers[ply] = false
-	for k, v in pairs(ents.GetAll()) do
-		if v:IsWeapon() then
-			v:Remove()
-		end
-	end
 	if attacker:IsValid() and attacker:IsPlayer() then
 		attacker:AddFrags(1)
 
@@ -679,7 +674,6 @@ hook.Add("PlayerDeath", "CuntDiedLmao", function(ply, inflictor, attacker)
 		ulx.csay(nil, "Player " .. alivePlayerCheck:Nick() .. " Wins! Round Over!", white)
 		RemoveTimer("Fortnut")
 		alivePlayerCheck:KillSilent()
-		-- loop to remove guns
 		for k, v in pairs(ents.GetAll()) do
 			if v:IsWeapon() then
 				v:Remove()
