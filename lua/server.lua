@@ -677,7 +677,7 @@ hook.Add("PlayerDeath", "CuntDiedLmao", function(ply, inflictor, attacker)
 		-- loop to remove guns
 		for k, v in pairs(ents.GetAll()) do
 			if v:IsWeapon() then
-				print("placeholder") -- remove 
+				v:Remove()
 			end
 		end
 	end
