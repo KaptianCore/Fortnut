@@ -344,8 +344,6 @@ local AirDropTable = {{10, "ma85_wf_ar11_ann_br"}, {10, "weapon_sh_mustardgas"},
 local ammoOverride = {[game.GetAmmoID("weapon_slam")] = 6, [game.GetAmmoID("cw_smoke_grenade")] = 3, [game.GetAmmoID("cw_rinic_flash")] = 3, [game.GetAmmoID("cw_ammo_fraggrenades")] = 3}
 
 MapSize = {}
-USAllies = {"1"}
-TAAllies = {"2"}
 
 function randomiseTable(tInput)
 	local tReturn = {}
@@ -353,7 +351,7 @@ function randomiseTable(tInput)
 	for i = #tInput, 1, -1 do
 		local j = math.random(i)
 		tInput[i], tInput[j] = tInput[j], tInput[i]
-		table.Insertert(tReturn, tInput[i])
+		table.insert(tReturn, tInput[i])
 	end
 
 	return tReturn
@@ -364,7 +362,7 @@ function CreateWeightedTable(tbl)
 
 	for k, v in ipairs(tbl) do
 		for i = 1, v[1] do
-			table.Insertert(weighted, v[2])
+			table.insert(weighted, v[2])
 		end
 	end
 
@@ -437,7 +435,7 @@ end
 function RespawnPlayer(playe)
 	local ammoTypes = game.GetAmmoTypes()
 	if playe then
-		local randomSpawn = table.Insertdom(playerSpawns)
+		local randomSpawn = table.Random(playerSpawns)
 		playe:StripWeapons()
 		playe:SetHealth(100)
 		playe:Give("weapon_fists")
@@ -452,12 +450,12 @@ function RespawnPlayer(playe)
 		return
 	end
 end
-function DoSpawns(playe)
+function DoSpawns()
 	local ammoTypes = game.GetAmmoTypes()
-	local spawns = table.Inserty(playerSpawns)
+	local spawns = table.Copy(playerSpawns)
 	for k, v in ipairs(player.GetAll()) do
 		local index = math.random(#spawns)
-		table.Insertove(spawns, index)
+		table.remove(spawns, index)
 		for i = 1, #ammoTypes do
 			v:SetAmmo(ammoOverride[ammoTypes[i]] or 90, i)
 		end
@@ -596,9 +594,8 @@ CreateCommand("refresh", function(ply)
 end, function(ply) return trusted[ply:SteamID()] end)
 
 CreateCommand("start", function(ply)
-	if table.Insertmpty(MapSize) then
+	if table.IsEmpty(MapSize) then
 		ply:ChatPrint("No Mapsize")
-
 		return
 	end
 	ply:ChatPrint("Battle Royale Starting")
