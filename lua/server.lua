@@ -684,7 +684,7 @@ timer.Create("DoFuckedCuntDamage", 3, -1, function()
 	if not GetGlobalBool("gamestart") then return end
 
 	for k, v in pairs(cachedPlayers) do
-		if not v then
+		if k then
 			local distanceToOrigin = (25000 - ((CurTime() - originTime) * 50))
 			local distanceToCompare = distanceToOrigin < 2000 and 2000 or (distanceToOrigin ^ 2)
 			if k:GetPos():DistToSqr(origin) > distanceToCompare then
