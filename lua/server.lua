@@ -563,9 +563,9 @@ function alivePlayer()
 	local intCount = 0
 	local lastPlayer
 	for k, v in pairs( cachedPlayers ) do
-		if v then
+		if k then
 			intCount = intCount + 1
-			strLastIDChecked = k
+			lastPlayer = k
 		end
 	end
 	if intCount == 1 then
