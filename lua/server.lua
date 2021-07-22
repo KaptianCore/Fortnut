@@ -560,32 +560,6 @@ function CreateAirDrop(pos)
 		net.Broadcast()
 	end)
 end
-function factionAllies()
-	if GAMEMODE.IsAlly("1", "101") then
-		table.Insert(USAllies, "101")
-	end
-	if GAMEMODE.IsAlly("1", "102") then
-		table.Insert(USAllies, "102")
-	end
-	if GAMEMODE.IsAlly("1", "103") then
-		table.Insert(USAllies, "103")
-	end
-	if GAMEMODE.IsAlly("1", "104") then
-		table.Insert(USAllies, "104")
-	end
-	if GAMEMODE.IsAlly("2", "101") then
-		table.Insert(TAAllies, "101")
-	end
-	if GAMEMODE.IsAlly("2", "102") then
-		table.Insert(TAAllies, "102")
-	end
-	if GAMEMODE.IsAlly("2", "103") then
-		table.Insert(TAAllies, "103")
-	end
-	if GAMEMODE.IsAlly("2", "104") then
-		table.Insert(TAAllies, "104")
-	end
-end
 
 function alivePlayer()
 	local intCount = 0
@@ -643,28 +617,6 @@ CreateCommand("start", function(ply)
 	end)
 end)
 
-CreateCommand("startfac", function(ply)
-	if table.Insertmpty(MapSize) then
-		ply:ChatPrint("No Mapsize")
-
-		return
-	end
-	ply:ChatPrint("Battle Royale Starting")
-	ply:ChatPrint("Weapons Spawning")
-	SpawnWeapons()
-	ply:ChatPrint("Weapons Spawned")
-
-	local pos = ply:GetEyeTrace().HitPos
-	timer.Simple(30, function()
-		SetOrigin(pos)
-		SetGlobalBool("gamestart", true)
-		SetGlobalBool("notsolos", true)
-		ply:ChatPrint("Zone Area Created")
-		DoSpawns()
---      CreateTimer(player.GetAll(), "Fortnut", 30)
-	end)
-end)
-
 CreateCommand("respawn", function(ply, target)
 	target = getUser(target, true, ply)
 	cachedPlayers[target] = true
@@ -672,6 +624,12 @@ CreateCommand("respawn", function(ply, target)
 	if target and target:Alive() then
 		RespawnPlayer(target)
 		target:SetPos(ply:GetPos())
+	end
+end)
+
+CreateCommand("players", function()
+	for k, v in pairs(players.GetAll()) do
+		print("placeholder")
 	end
 end)
 
@@ -721,9 +679,6 @@ hook.Add("PlayerDeath", "CuntDiedLmao", function(ply, inflictor, attacker)
 	if attacker:IsValid() and attacker:IsPlayer() then
 		attacker:AddFrags(1)
 
-	end
-	if GetGlobalBool("notsolos") then
-		print("placeholder") -- figure out if certain sides have people alive so check player faction then check if that player faction id is in the table
 	end
 	local alivePlayerCheck = alivePlayer()
 	if not isnumber( alivePlayerCheck ) and alivePlayerCheck:IsPlayer() then
