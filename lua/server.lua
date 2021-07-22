@@ -563,7 +563,7 @@ end
 
 function alivePlayer()
 	local intCount = 0
-	local strLastIDChecked = ""
+	local lastPlayer
 	for k, v in pairs( cachedPlayers ) do
 		if v then
 			intCount = intCount + 1
@@ -571,7 +571,7 @@ function alivePlayer()
 		end
 	end
 	if intCount == 1 then
-		return strLastIDChecked
+		return lastPlayer
 	else
 		return intCount
 	end
@@ -687,7 +687,7 @@ timer.Create("DoFuckedCuntDamage", 3, -1, function()
 	if not GetGlobalBool("gamestart") then return end
 
 	for k, v in pairs(cachedPlayers) do
-		if not v == false then
+		if not v then
 			local distanceToOrigin = (25000 - ((CurTime() - originTime) * 50))
 			local distanceToCompare = distanceToOrigin < 2000 and 2000 or (distanceToOrigin ^ 2)
 			if k:GetPos():DistToSqr(origin) > distanceToCompare then
@@ -698,10 +698,9 @@ timer.Create("DoFuckedCuntDamage", 3, -1, function()
 end)
 
 hook.Add("PlayerDeath", "CuntDiedLmao", function(ply, inflictor, attacker)
-	cachedPlayers[ply] = false
+	cachedPlayers[ply] = nil
 	if attacker:IsValid() and attacker:IsPlayer() then
 		attacker:AddFrags(2)
-
 	end
 	local alivePlayerCheck = alivePlayer()
 	if not isnumber( alivePlayerCheck ) and alivePlayerCheck:IsPlayer() then
