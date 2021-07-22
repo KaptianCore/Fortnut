@@ -344,6 +344,8 @@ local AirDropTable = {{10, "ma85_wf_ar11_ann_br"}, {10, "weapon_sh_mustardgas"},
 local ammoOverride = {[game.GetAmmoID("weapon_slam")] = 6, [game.GetAmmoID("cw_smoke_grenade")] = 3, [game.GetAmmoID("cw_rinic_flash")] = 3, [game.GetAmmoID("cw_ammo_fraggrenades")] = 3}
 
 MapSize = {}
+USAllies = {"1"}
+TAAllies = {"2"}
 
 function randomiseTable(tInput)
 	local tReturn = {}
@@ -351,7 +353,7 @@ function randomiseTable(tInput)
 	for i = #tInput, 1, -1 do
 		local j = math.random(i)
 		tInput[i], tInput[j] = tInput[j], tInput[i]
-		table.insert(tReturn, tInput[i])
+		table.Insertert(tReturn, tInput[i])
 	end
 
 	return tReturn
@@ -362,7 +364,7 @@ function CreateWeightedTable(tbl)
 
 	for k, v in ipairs(tbl) do
 		for i = 1, v[1] do
-			table.insert(weighted, v[2])
+			table.Insertert(weighted, v[2])
 		end
 	end
 
@@ -435,7 +437,7 @@ end
 function RespawnPlayer(playe)
 	local ammoTypes = game.GetAmmoTypes()
 	if playe then
-		local randomSpawn = table.Random(playerSpawns)
+		local randomSpawn = table.Insertdom(playerSpawns)
 		playe:StripWeapons()
 		playe:SetHealth(100)
 		playe:Give("weapon_fists")
@@ -452,10 +454,10 @@ function RespawnPlayer(playe)
 end
 function DoSpawns(playe)
 	local ammoTypes = game.GetAmmoTypes()
-	local spawns = table.Copy(playerSpawns)
+	local spawns = table.Inserty(playerSpawns)
 	for k, v in ipairs(player.GetAll()) do
 		local index = math.random(#spawns)
-		table.remove(spawns, index)
+		table.Insertove(spawns, index)
 		for i = 1, #ammoTypes do
 			v:SetAmmo(ammoOverride[ammoTypes[i]] or 90, i)
 		end
@@ -558,6 +560,32 @@ function CreateAirDrop(pos)
 		net.Broadcast()
 	end)
 end
+function factionAllies()
+	if GAMEMODE.IsAlly("1", "101") then
+		table.Insert(USAllies, "101")
+	end
+	if GAMEMODE.IsAlly("1", "102") then
+		table.Insert(USAllies, "102")
+	end
+	if GAMEMODE.IsAlly("1", "103") then
+		table.Insert(USAllies, "103")
+	end
+	if GAMEMODE.IsAlly("1", "104") then
+		table.Insert(USAllies, "104")
+	end
+	if GAMEMODE.IsAlly("2", "101") then
+		table.Insert(TAAllies, "101")
+	end
+	if GAMEMODE.IsAlly("2", "102") then
+		table.Insert(TAAllies, "102")
+	end
+	if GAMEMODE.IsAlly("2", "103") then
+		table.Insert(TAAllies, "103")
+	end
+	if GAMEMODE.IsAlly("2", "104") then
+		table.Insert(TAAllies, "104")
+	end
+end
 
 function alivePlayer()
 	local intCount = 0
@@ -594,7 +622,7 @@ CreateCommand("refresh", function(ply)
 end, function(ply) return trusted[ply:SteamID()] end)
 
 CreateCommand("start", function(ply)
-	if table.IsEmpty(MapSize) then
+	if table.Insertmpty(MapSize) then
 		ply:ChatPrint("No Mapsize")
 
 		return
@@ -608,6 +636,29 @@ CreateCommand("start", function(ply)
 	timer.Simple(30, function()
 		SetOrigin(pos)
 		SetGlobalBool("gamestart", true)
+		SetGlobalBool("notsolos", false)
+		ply:ChatPrint("Zone Area Created")
+		DoSpawns()
+--      CreateTimer(player.GetAll(), "Fortnut", 30)
+	end)
+end)
+
+CreateCommand("startfac", function(ply)
+	if table.Insertmpty(MapSize) then
+		ply:ChatPrint("No Mapsize")
+
+		return
+	end
+	ply:ChatPrint("Battle Royale Starting")
+	ply:ChatPrint("Weapons Spawning")
+	SpawnWeapons()
+	ply:ChatPrint("Weapons Spawned")
+
+	local pos = ply:GetEyeTrace().HitPos
+	timer.Simple(30, function()
+		SetOrigin(pos)
+		SetGlobalBool("gamestart", true)
+		SetGlobalBool("notsolos", true)
 		ply:ChatPrint("Zone Area Created")
 		DoSpawns()
 --      CreateTimer(player.GetAll(), "Fortnut", 30)
@@ -670,6 +721,9 @@ hook.Add("PlayerDeath", "CuntDiedLmao", function(ply, inflictor, attacker)
 	if attacker:IsValid() and attacker:IsPlayer() then
 		attacker:AddFrags(1)
 
+	end
+	if GetGlobalBool("notsolos") then
+		print("placeholder") -- figure out if certain sides have people alive so check player faction then check if that player faction id is in the table
 	end
 	local alivePlayerCheck = alivePlayer()
 	if not isnumber( alivePlayerCheck ) and alivePlayerCheck:IsPlayer() then
