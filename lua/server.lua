@@ -561,9 +561,9 @@ end
 
 function alivePlayer()
 	local intCount = 0
-	local strLastIDChecked = "" -- store the last id that was checked
+	local strLastIDChecked = ""
 	for k, v in pairs( cachedPlayers ) do
-		if v then -- only needs to check for v because the table value is a boolean
+		if v then
 			intCount = intCount + 1
 			strLastIDChecked = k
 		end
@@ -671,7 +671,7 @@ hook.Add("PlayerDeath", "CuntDiedLmao", function(ply, inflictor, attacker)
 		attacker:AddFrags(1)
 
 	end
-	local alivePlayerCheck = alivePlayer() -- use a variable as to not make the same function call more than once
+	local alivePlayerCheck = alivePlayer()
 	if not isnumber( alivePlayerCheck ) and alivePlayerCheck:IsPlayer() then
 		ulx.csay(nil, "Player " .. alivePlayerCheck:Nick() .. " Wins! Round Over!", white)
 		RemoveTimer("Fortnut")
