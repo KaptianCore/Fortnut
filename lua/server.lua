@@ -393,7 +393,7 @@ function ParachuteKey(ply, key)
 		ply.FlarePara = 1
 		ply:ViewPunch(Angle(35, 0, 0))
 		ply:EmitSound("V92_ZP_BF2_Deploy")
-		local Para = ents.Create("v92_zchute_bf2_active") -- Change to _decor
+		local Para = ents.Create("v92_zchute_bf2_decor")
 		Para:SetOwner(ply)
 		Para:SetPos(ply:GetPos() + ply:GetUp() * 100 + ply:GetForward() * 10)
 		Para:SetAngles(ply:GetAngles())
@@ -520,7 +520,7 @@ function CreateAirDrop(pos)
 	end
 
 	constraint.Keepupright(ent, Angle(), 0, 10000)
-	local Para = ents.Create("v92_zchute_bf2_active") -- Change to _decor
+	local Para = ents.Create("v92_zchute_bf2_decor")
 	Para:SetOwner(ent)
 	Para:SetPos(ent:GetPos() + ent:GetUp() * 100 + ent:GetForward() * 10)
 	Para:SetAngles(ent:GetAngles())
@@ -612,7 +612,7 @@ CreateCommand("start", function(ply)
 		SetGlobalBool("gamestart", true)
 		ply:ChatPrint("Zone Area Created")
 		DoSpawns()
---      CreateTimer(player.GetAll(), "Fortnut", 30)
+		CreateTimer(player.GetAll(), "Fortnut", 30)
 	end)
 end)
 
@@ -700,7 +700,7 @@ end)
 hook.Add("PlayerDeath", "CuntDiedLmao", function(ply, inflictor, attacker)
 	cachedPlayers[ply] = false
 	if attacker:IsValid() and attacker:IsPlayer() then
-		attacker:AddFrags(1)
+		attacker:AddFrags(2)
 
 	end
 	local alivePlayerCheck = alivePlayer()
