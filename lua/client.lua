@@ -50,4 +50,4 @@ hook_Add("PreDrawHalos", "DrawIdiots", function()
     halo_Add(airdrops, color_green, 5, 5, 1, false, true)
 end)
 
-chat_AddText("Loaded Clientside fortnut")
+chat_AddText("Loaded Clientside Fortnut")

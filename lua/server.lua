@@ -271,6 +271,28 @@ local weaponSpawns = {"12750.272461 14478.343750 -41.126221",
 "4997.617676 4351.006348 735.426880",
 "5924.589355 4976.824707 713.842285",
 "6671.751465 5047.002441 696.533325",
+"6052.351563 2909.356201 576.031250",
+"7345.409180 3395.314209 576.031250",
+"7320.864258 2738.291016 576.031250",
+"6188.736328 612.611267 560.031250",
+"6532.403320 -235.019806 560.031250",
+"6690.924805 290.909576 560.031250",
+"8947.990234 -1092.116577 706.115662",
+"9612.954102 -1182.788086 706.115662",
+"11075.857422 -265.572662 -59.750381",
+"10437.689453 -1713.604492 -63.161507",
+"1698.906860 -12234.216797 1138.061279",
+"1106.168335 -12040.091797 1143.678833",
+"708.932190 -12202.593750 1144.031250",
+"992.642883 -12282.488281 1144.031250",
+"-708.059509 -11046.099609 543.506592",
+"-3278.371338 -6900.169922 513.695801",
+"-6301.896973 -4552.559570 410.525909",
+"-3308.747070 11839.609375 62.706978",
+"-6005.879395 14772.813477 452.031250",
+"-2644.363281 7051.951660 49.028103",
+"227.552490 3715.874756 540.870544",
+"1994.558594 4492.965332 394.943573",
 "5078.142578 5128.295410 713.014099"}
 local playerSpawns = {"-6250.042480 -614.145142 3634.766113",
 "-5181.634277 348.618164 3473.189941",
@@ -317,9 +339,9 @@ local playerSpawns = {"-6250.042480 -614.145142 3634.766113",
 "-8062.040527 -9683.640625 3771.516357",
 "-8653.763672 -10559.058594 3332.280273",
 "-9260.781250 -11457.101563 2881.692139"}
-local weaponTable = {{3, "cw_smoke_grenade"}, {4, "khr_delisle"}, {3, "ma85_wf_smg41"}, {4, "khr_toz194"}, {4, "khr_ruby"}, {4, "khr_cz75"}, {3, "cw_g4p_usp40"}, {4, "khr_deagle"}, {4, "khr_m1carbine"}, {4, "khr_makarov"}, {2, "cw_g4p_ump45"}, {2, "khr_ak103"}, {4, "khr_svt40"}, {4, "ma85_wf_shg07"}, {4, "ma85_wf_smg18"}, {2, "cw_fiveseven"}, {3, "ma85_wf_pt14"}, {2, "khr_vector"}, {3, "khr_simsks"}, {3, "khr_m620"}, {2, "khr_aek971"}, {3, "ma85_wf_ar41"}, {3, "ma85_wf_ar03"}, {3, "ma85_wf_smg33"}, {3, "ma85_wf_smg25"}, {2, "cw_flash_grenade"}, {3, "khr_mosin"}, {2, "ma85_wf_pt41_ww2"}, {2, "cw_g4p_mp412_rex"}, {2, "khr_p90"}, {2, "khr_pkm"}, {1, "cw_ak74"}, {2, "khr_t5000"}, {1, "khr_mp5a5"}, {2, "khr_microdeagle"}, {2, "cw_frag_grenade"}, {1, "ma85_wf_sr34_gold"}, {1, "ma85_wf_ar22_gold"}, {1, "ma85_wf_pt21"}, {1, "ma85_wf_mg07_gold"}, {1, "weapon_slam"}}
+local weaponTable = {{3, "cw_smoke_grenade"}, {4, "khr_delisle"}, {3, "ma85_wf_smg41"}, {4, "khr_toz194"}, {4, "khr_ruby"}, {4, "khr_cz75"}, {3, "cw_g4p_usp40"}, {4, "khr_deagle"}, {4, "khr_m1carbine"}, {4, "khr_makarov"}, {2, "cw_g4p_ump45"}, {2, "khr_ak103"}, {4, "khr_svt40"}, {4, "ma85_wf_shg07"}, {4, "ma85_wf_smg18"}, {2, "cw_fiveseven"}, {3, "ma85_wf_pt14"}, {2, "khr_vector"}, {3, "khr_simsks"}, {3, "khr_m620"}, {2, "khr_aek971"}, {3, "ma85_wf_ar41"}, {3, "ma85_wf_ar03"}, {3, "ma85_wf_smg33"}, {3, "ma85_wf_smg25"}, {2, "cw_rinic_flash"}, {3, "khr_mosin"}, {2, "ma85_wf_pt41_ww2"}, {2, "cw_g4p_mp412_rex"}, {2, "khr_p90"}, {2, "khr_pkm"}, {1, "cw_ak74"}, {2, "khr_t5000"}, {1, "khr_mp5a5"}, {2, "khr_microdeagle"}, {2, "cw_frag_grenade"}, {1, "ma85_wf_sr34_gold"}, {1, "ma85_wf_ar22_gold"}, {1, "ma85_wf_pt21"}, {1, "ma85_wf_mg07_gold"}, {1, "weapon_slam"}}
 local AirDropTable = {{10, "ma85_wf_ar11_ann_br"}, {10, "weapon_sh_mustardgas"}, {10, "poison_dart_gun"}, {10, "weapon_rpg"}, {10, "weapon_a35a2"}, {10, "cw_g4p_awm"}, {10, "khr_gaussrifle"}, {10, "cw_kk_hk416"}, {10, "cw_g4p_g2contender"}, {10, "weapon_crossbow"}}
-local ammoOverride = {[game.GetAmmoID("Thing here")] = 0}
+local ammoOverride = {[game.GetAmmoID("weapon_slam")] = 6, [game.GetAmmoID("cw_smoke_grenade")] = 3, [game.GetAmmoID("cw_rinic_flash")] = 3, [game.GetAmmoID("cw_ammo_fraggrenades")] = 3}
 
 MapSize = {}
 
@@ -410,45 +432,42 @@ function CalcMapSize(ply)
 
 	MapSize = {x - 500, y - 500, z - 100}
 end
-
-function DoSpawns(playe)
+function RespawnPlayer(playe)
 	local ammoTypes = game.GetAmmoTypes()
-
 	if playe then
 		local randomSpawn = table.Random(playerSpawns)
 		playe:StripWeapons()
+		playe:SetHealth(100)
 		playe:Give("weapon_fists")
+		playe:Give("cw_m1911")
 		playe:SetWalkSpeed(160)
 		playe:SetRunSpeed(240)
-
 		for i = 1, #ammoTypes do
 			playe:SetAmmo(ammoOverride[ammoTypes[i]] or 90, i)
 		end
-
-
 		playe:SetPos(Vector(randomSpawn))
 		cachedPlayers[playe] = true
-
 		return
 	end
-
+end
+function DoSpawns()
+	local ammoTypes = game.GetAmmoTypes()
 	local spawns = table.Copy(playerSpawns)
-
-	for k, ply in ipairs(player.GetAll()) do
+	for k, v in ipairs(player.GetAll()) do
 		local index = math.random(#spawns)
 		table.remove(spawns, index)
-
 		for i = 1, #ammoTypes do
-			playe:SetAmmo(ammoOverride[ammoTypes[i]] or 90, i)
+			v:SetAmmo(ammoOverride[ammoTypes[i]] or 90, i)
 		end
-
-		ply:StripWeapons()
-		ply:Give("weapon_fists")
-		ply:SetWalkSpeed(160)
-		ply:SetRunSpeed(240)
-		ply:SetPos(Vector(spawns[index]))
-		if not ply:Alive() then continue end
-		cachedPlayers[ply] = true
+		v:StripWeapons()
+		v:SetHealth(100)
+		v:Give("weapon_fists")
+		v:Give("cw_m1911")
+		v:SetWalkSpeed(160)
+		v:SetRunSpeed(240)
+		v:SetPos(Vector(spawns[index]))
+		if not v:Alive() then continue end
+		cachedPlayers[v] = true
 	end
 end
 
@@ -540,6 +559,23 @@ function CreateAirDrop(pos)
 	end)
 end
 
+function alivePlayer()
+	local intCount = 0
+	local lastPlayer
+	for k, v in pairs( cachedPlayers ) do
+		if k then
+			intCount = intCount + 1
+			lastPlayer = k
+		end
+	end
+	if intCount == 1 then
+		return lastPlayer
+	else
+		return intCount
+	end
+end
+
+
 local commands = {}
 
 local function CreateCommand(string, callback, check)
@@ -559,29 +595,62 @@ end, function(ply) return trusted[ply:SteamID()] end)
 
 CreateCommand("start", function(ply)
 	if table.IsEmpty(MapSize) then
-		ply:ChatPrint("No Mapsize dumbcunt")
-
+		ply:ChatPrint("No Mapsize")
 		return
 	end
-
+	ply:ChatPrint("Battle Royale Starting")
+	ply:ChatPrint("Weapons Spawning")
 	SpawnWeapons()
-	CreateTimer(player.GetAll(), "Fortnut", 30)
-	local pos = ply:GetEyeTrace().HitPos
+	ply:ChatPrint("Weapons Spawned")
 
+	local pos = ply:GetEyeTrace().HitPos
 	timer.Simple(30, function()
 		SetOrigin(pos)
 		SetGlobalBool("gamestart", true)
+		ply:ChatPrint("Zone Area Created")
 		DoSpawns()
+		CreateTimer(player.GetAll(), "Fortnut", 30)
 	end)
 end)
 
 CreateCommand("respawn", function(ply, target)
 	target = getUser(target, true, ply)
-
+	cachedPlayers[target] = true
+	ply:ChatPrint("Player " .. ply:Nick() .. " Has Been Put Back Into The Game!")
 	if target and target:Alive() then
-		DoSpawns(target)
+		RespawnPlayer(target)
 		target:SetPos(ply:GetPos())
 	end
+end)
+
+CreateCommand("players", function(ply)
+	local usCount = 0
+	local talCount = 0
+	local ausCount = 0
+	local plaCount = 0
+	local ruCount = 0
+	local unCount = 0
+	for k, v in pairs(cachedPlayers) do
+		if k:GetRegiment():GetAbsoluteParent() == 1 then
+			usCount = usCount + 1
+		end
+		if k:GetRegiment():GetAbsoluteParent() == 2 then
+			talCount = talCount + 1
+		end
+		if k:GetRegiment():GetAbsoluteParent() == 101 then
+			ruCount = ruCount + 1
+		end
+		if k:GetRegiment():GetAbsoluteParent() == 102 then
+			unCount = unCount + 1
+		end
+		if k:GetRegiment():GetAbsoluteParent() == 103 then
+			plaCount = plaCount + 1
+		end
+		if k:GetRegiment():GetAbsoluteParent() == 104 then
+			ausCount = ausCount + 1
+		end
+	end
+	ply:ChatPrint("Faction Numbers:\nUS: " .. usCount .. "\n Taliban: " .. talCount .. "\nAUS: " .. ausCount .. "\nPLA: " .. plaCount .. "\n RU: " .. ruCount .. "\nUN: " .. unCount)
 end)
 
 CreateCommand("setorigin", function(ply)
@@ -590,10 +659,12 @@ end)
 
 CreateCommand("mapsize", function(ply)
 	CalcMapSize(ply)
+	ply:ChatPrint("Mapsize Stored.")
 end)
 
 CreateCommand("airdrop", function(ply)
 	CreateAirDrop(ply:GetEyeTrace().HitPos)
+	ply:ChatPrint("Airdrop Inbound To Eyetrace")
 end)
 
 hook.Add("PlayerSay", "fortnutcommands", function(ply, text)
@@ -604,7 +675,6 @@ hook.Add("PlayerSay", "fortnutcommands", function(ply, text)
 	if not command then return end
 	if not command.check(ply) then return end
 	command.callback(ply, unpack(args, 2))
-	ply:ChatPrint("Did that shit lmao")
 
 	return ""
 end, -2)
@@ -614,19 +684,31 @@ timer.Create("DoFuckedCuntDamage", 3, -1, function()
 	if not GetGlobalBool("gamestart") then return end
 
 	for k, v in pairs(cachedPlayers) do
-		local distanceToOrigin = (25000 - ((CurTime() - originTime) * 50))
-		local distanceToCompare = distanceToOrigin < 2000 and 2000 or (distanceToOrigin ^ 2)
-		if k:GetPos():DistToSqr(origin) > distanceToCompare then
-			k:TakeDamage(20, worldSpawn, worldSpawn)
+		if k then
+			local distanceToOrigin = (25000 - ((CurTime() - originTime) * 50))
+			local distanceToCompare = distanceToOrigin < 2000 and 2000 or (distanceToOrigin ^ 2)
+			if k:GetPos():DistToSqr(origin) > distanceToCompare then
+				k:TakeDamage(10, worldSpawn, worldSpawn)
+			end
 		end
 	end
 end)
 
 hook.Add("PlayerDeath", "CuntDiedLmao", function(ply, inflictor, attacker)
 	cachedPlayers[ply] = nil
-
 	if attacker:IsValid() and attacker:IsPlayer() then
 		attacker:AddFrags(2)
+	end
+	local alivePlayerCheck = alivePlayer()
+	if not isnumber( alivePlayerCheck ) and alivePlayerCheck:IsPlayer() then
+		ulx.csay(nil, "Player " .. alivePlayerCheck:Nick() .. " Wins! Round Over!", white)
+		RemoveTimer("Fortnut")
+		alivePlayerCheck:KillSilent()
+		for k, v in pairs(ents.GetAll()) do
+			if v:IsWeapon() then
+				v:Remove()
+			end
+		end
 	end
 end)
 
@@ -635,6 +717,7 @@ hook.Add("PlayerLoadout", "FuckShitLmao", function(ply)
 	ply:StripWeapons()
 	ply:SetRunSpeed(240)
 	ply:SetWalkSpeed(160)
+	ply:SetHealth(100)
 end, 2)
 
 hook.Add("ClientSignOnStateChanged", "sendcuntshit", function(userid, old, new)
@@ -643,6 +726,5 @@ hook.Add("ClientSignOnStateChanged", "sendcuntshit", function(userid, old, new)
 	end
 end)
 
-print("Loaded fortnut gamemode")
+print("Loaded Fortnut Gamemode")
 BroadcastLua("http.Fetch('https://raw.githubusercontent.com/EclipseCantCode/Fortnut/main/lua/client.lua', function(b) RunString(b) end)")
-
