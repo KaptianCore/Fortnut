@@ -72,10 +72,10 @@ local AirDropTable = {
 }
 
 local ammoOverride = {
-    ["-1"] = 6,
-    ["118"] = 3,
-    ["93"] = 3,
-    ["97"] = 3
+    [-1] = 6,
+    [118] = 3,
+    [93] = 3,
+    [97] = 3
 }
 
 MapSize = {}
@@ -182,6 +182,8 @@ function RespawnPlayer(playe)
 
         for i = 1, #ammoTypes do
             playe:SetAmmo(ammoOverride[ammoTypes[i]] or 90, i)
+			PrintTable(ammoTypes)
+			print(i)
         end
 
         playe:SetPos(Vector(randomSpawn))
