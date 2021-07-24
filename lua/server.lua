@@ -72,10 +72,10 @@ local AirDropTable = {
 }
 
 local ammoOverride = {
-    [-1] = 6,
-    [118] = 3,
-    [93] = 3,
-    [97] = 3
+    ["slam"] = 6,
+    ["Smoke Grenades"] = 3,
+    ["Flash Grenades"] = 3,
+    ["Frag Grenades"] = 3
 }
 
 MapSize = {}
