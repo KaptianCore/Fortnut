@@ -74,7 +74,7 @@ local AirDropTable = {
 local ammoOverride = {
     ["slam"] = 6,
     ["Smoke Grenades"] = 3,
-    ["Flash Grenades"] = 3,
+    ["Flash Grenades"] = 0,
     ["Frag Grenades"] = 3
 }
 
@@ -182,8 +182,6 @@ function RespawnPlayer(playe)
 
         for i = 1, #ammoTypes do
             playe:SetAmmo(ammoOverride[ammoTypes[i]] or 90, i)
-			PrintTable(ammoTypes)
-			print(i)
         end
 
         playe:SetPos(Vector(randomSpawn))
