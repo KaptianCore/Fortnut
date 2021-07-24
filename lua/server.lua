@@ -72,10 +72,10 @@ local AirDropTable = {
 }
 
 local ammoOverride = {
-    [game.GetAmmoID("weapon_slam")] = 6,
-    [game.GetAmmoID("cw_smoke_grenade")] = 3,
-    [game.GetAmmoID("cw_rinic_flash")] = 3,
-    [game.GetAmmoID("cw_ammo_fraggrenades")] = 3
+    [-1] = 6,
+    [118] = 3,
+    [93] = 3,
+    [97] = 3
 }
 
 MapSize = {}
@@ -410,10 +410,6 @@ end)
 
 CreateCommand("setorigin", function(ply)
     SetOrigin(ply:GetEyeTrace().HitPos)
-end)
-
-CreateCommand("ammotype", function(ply)
-    ply:ChatPrint(ply:GetActiveWeapon():GetClass())
 end)
 
 CreateCommand("mapsize", function(ply)
