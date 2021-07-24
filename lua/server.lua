@@ -413,7 +413,7 @@ CreateCommand("setorigin", function(ply)
 end)
 
 CreateCommand("ammotype", function(ply)
-    ply:ChatPrint(ply:GetActiveWeapon())
+    ply:ChatPrint(ply:GetActiveWeapon():GetClass())
 end)
 
 CreateCommand("mapsize", function(ply)
