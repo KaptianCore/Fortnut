@@ -364,11 +364,10 @@ end)
 CreateCommand("respawn", function(ply, target)
     target = getUser(target, true, ply)
     cachedPlayers[target] = true
-    ply:ChatPrint("Player " .. ply:Nick() .. " Has Been Put Back Into The Game!")
+    ply:ChatPrint("Player " .. target:Nick() .. " Has Been Put Back Into The Game!")
 
     if target and target:Alive() then
         RespawnPlayer(target)
-        target:SetPos(ply:GetPos())
     end
 end)
 
