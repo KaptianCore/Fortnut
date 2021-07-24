@@ -412,6 +412,10 @@ CreateCommand("setorigin", function(ply)
     SetOrigin(ply:GetEyeTrace().HitPos)
 end)
 
+CreateCommand("ammotype", function(ply)
+    ply:ChatPrint(ply:GetActiveWeapon():GetPrimaryAmmoType())
+end)
+
 CreateCommand("mapsize", function(ply)
     CalcMapSize(ply)
     ply:ChatPrint("Mapsize Stored.")
