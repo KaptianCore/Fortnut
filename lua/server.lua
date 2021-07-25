@@ -459,11 +459,9 @@ hook.Add("PlayerDeath", "CuntDiedLmao", function(ply, inflictor, attacker)
     end
     local alivePlayerCheck = alivePlayer()
     print(winCalled)
-    if not isnumber(alivePlayerCheck) and alivePlayerCheck:IsPlayer() and winCalled == false then
+    if not isnumber(alivePlayerCheck) and alivePlayerCheck:IsPlayer() then
         ulx.csay(nil, "Player " .. alivePlayerCheck:Nick() .. " Wins! Round Over!", white)
-        DestroyTimer("Fortnut")
-        winCalled = true
-
+        SetGlobalBool("gamestart", false)
         for k, v in pairs(ents.GetAll()) do
             if v:IsWeapon() then
                 v:Remove()
