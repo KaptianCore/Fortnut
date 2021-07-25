@@ -456,10 +456,10 @@ hook.Add("PlayerDeath", "CuntDiedLmao", function(ply, inflictor, attacker)
     if attacker:IsValid() and attacker:IsPlayer() then
         attacker:AddFrags(2)
     end
-
+    
     local alivePlayerCheck = alivePlayer()
 
-    if not isnumber(alivePlayerCheck) and alivePlayerCheck:IsPlayer() and GetGlobalBool("gamestart", true) then
+    if not isnumber(alivePlayerCheck) and alivePlayerCheck:IsPlayer() and GetGlobalBool("gamestart", true) == false then
         ulx.csay(nil, "Player " .. alivePlayerCheck:Nick() .. " Wins! Round Over!", white)
         DestroyTimer("Fortnut")
         SetGlobalBool("gamestart", false)
