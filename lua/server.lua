@@ -458,7 +458,7 @@ hook.Add("PlayerDeath", "CuntDiedLmao", function(ply, inflictor, attacker)
         attacker:AddFrags(2)
     end
     local alivePlayerCheck = alivePlayer()
-
+    print(winCalled)
     if not isnumber(alivePlayerCheck) and alivePlayerCheck:IsPlayer() and winCalled == false then
         ulx.csay(nil, "Player " .. alivePlayerCheck:Nick() .. " Wins! Round Over!", white)
         DestroyTimer("Fortnut")
