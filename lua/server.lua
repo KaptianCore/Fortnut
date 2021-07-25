@@ -452,18 +452,17 @@ timer.Create("DoFuckedCuntDamage", 3, -1, function()
 end)
 
 hook.Add("PlayerDeath", "CuntDiedLmao", function(ply, inflictor, attacker)
+    if GetGlobalBool("gamestart") then return end
     cachedPlayers[ply] = nil
-
     if attacker:IsValid() and attacker:IsPlayer() then
         attacker:AddFrags(2)
     end
     local alivePlayerCheck = alivePlayer()
     print(winCalled)
     if not isnumber(alivePlayerCheck) and alivePlayerCheck:IsPlayer() and winCalled == false then
+        ulx.csay(nil, "Player " .. alivePlayerCheck:Nick() .. " Wins! Round Over!", white)
+        DestroyTimer("Fortnut")
         winCalled = true
-        ulx.csay(nil, "Player " .. alivePlayerCheck:Nick() .. " SUCKS! Round Over!", white)
-        // DestroyTimer("Fortnut")
-       
 
         for k, v in pairs(ents.GetAll()) do
             if v:IsWeapon() then
