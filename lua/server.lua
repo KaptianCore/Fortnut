@@ -453,27 +453,23 @@ timer.Create("DoFuckedCuntDamage", 3, -1, function()
         end
     end
 end)
-local gamestart = GetGlobalBool("gamestart")
+
 hook.Add("PlayerDeath", "CuntDiedLmao", function(ply, inflictor, attacker)
-    if gamestart == true then
-        cachedPlayers[ply] = nil
-
-        if attacker:IsValid() and attacker:IsPlayer() then
-            attacker:AddFrags(2)
-        end
-
+    if not GetGlobalBool("gamestart") then return end
+    print("still doin stuff")
+    cachedPlayers[ply] = nil
+    if attacker:IsValid() and attacker:IsPlayer() then
+        attacker:AddFrags(2)
+    end
+    SetGlobalBool("gamestart", false)
+    local alivePlayerCheck = alivePlayer()
+    print("this should be only working once (since it should fail)")
+    if not isnumber(alivePlayerCheck) and alivePlayerCheck:IsPlayer() then
+        ulx.csay(nil, "Player " .. alivePlayerCheck:Nick() .. " Wins! Round Over!", white)
         SetGlobalBool("gamestart", false)
-        local alivePlayerCheck = alivePlayer()
-        print("this should be only working once (since it should fail)")
-
-        if not isnumber(alivePlayerCheck) and alivePlayerCheck:IsPlayer() then
-            ulx.csay(nil, "Player " .. alivePlayerCheck:Nick() .. " Wins! Round Over!", white)
-            SetGlobalBool("gamestart", false)
-
-            for k, v in pairs(ents.GetAll()) do
-                if v:IsWeapon() then
-                    v:Remove()
-                end
+        for k, v in pairs(ents.GetAll()) do
+            if v:IsWeapon() then
+                v:Remove()
             end
         end
     end
