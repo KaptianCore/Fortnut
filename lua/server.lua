@@ -417,10 +417,6 @@ CreateCommand("mapsize", function(ply)
     ply:ChatPrint("Mapsize Stored.")
 end)
 
-CreateCommand("globalbool", function(ply)
-    print(GetGlobalBool("gamestart"))
-end)
-
 CreateCommand("airdrop", function(ply)
     CreateAirDrop(ply:GetEyeTrace().HitPos)
     ply:ChatPrint("Airdrop Inbound To Eyetrace")
@@ -455,18 +451,15 @@ timer.Create("DoFuckedCuntDamage", 3, -1, function()
 end)
 
 hook.Add("PlayerDeath", "CuntDiedLmao", function(ply, inflictor, attacker)
-    if not GetGlobalBool("gamestart") then return end
-    print("still doin stuff")
     cachedPlayers[ply] = nil
     if attacker:IsValid() and attacker:IsPlayer() then
         attacker:AddFrags(2)
     end
-    SetGlobalBool("gamestart", false)
     local alivePlayerCheck = alivePlayer()
-    print("this should be only working once (since it should fail)")
     if not isnumber(alivePlayerCheck) and alivePlayerCheck:IsPlayer() then
         ulx.csay(nil, "Player " .. alivePlayerCheck:Nick() .. " Wins! Round Over!", white)
         SetGlobalBool("gamestart", false)
+        cachedPlayers[alivePlayerCheck] = nil
         for k, v in pairs(ents.GetAll()) do
             if v:IsWeapon() then
                 v:Remove()
