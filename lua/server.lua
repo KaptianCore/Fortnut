@@ -417,6 +417,10 @@ CreateCommand("mapsize", function(ply)
     ply:ChatPrint("Mapsize Stored.")
 end)
 
+CreateCommand("globalbool", function(ply)
+    print(GetGlobalBool("gamestart"))
+end)
+
 CreateCommand("airdrop", function(ply)
     CreateAirDrop(ply:GetEyeTrace().HitPos)
     ply:ChatPrint("Airdrop Inbound To Eyetrace")
