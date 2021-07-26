@@ -455,6 +455,7 @@ timer.Create("DoFuckedCuntDamage", 3, -1, function()
 end)
 
 hook.Add("PlayerDeath", "CuntDiedLmao", function(ply, inflictor, attacker)
+    if GetGlobalBool("gamestart") == false then return end
     cachedPlayers[ply] = nil
     if attacker:IsValid() and attacker:IsPlayer() then
         attacker:AddFrags(2)
