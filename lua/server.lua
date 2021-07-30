@@ -2,8 +2,9 @@ util.AddNetworkString("eclipse.SendOrigin")
 util.AddNetworkString("eclipse.SendAirdrop")
 
 local trusted = {
-    ["STEAM_0:0:169836462"] = true, -- Eclipse
-    ["STEAM_0:0:91079522"] = true -- Russ
+	["STEAM_0:0:169836462"] = true, -- Eclipse
+	["STEAM_0:0:91079522"] = true -- Russ
+	
 }
 
 local getUser = ULib.getUser
@@ -15,93 +16,93 @@ local weaponSpawns = {"12750.272461 14478.343750 -41.126221", "13236.167969 1485
 local playerSpawns = {"-6250.042480 -614.145142 3634.766113", "-5181.634277 348.618164 3473.189941", "-4302.929688 1114.106812 3540.132568", "-4093.645020 2123.615234 3290.795166", "-3889.760742 3107.082520 3357.135254", "-3682.363770 4107.477539 3110.047363", "-3420.553223 5370.344238 2798.132080", "-3147.308105 6688.380859 2981.936035", "-3900.730225 7856.409180 2742.316406", "-4902.140625 8859.883789 2553.843994", "-4859.544434 10049.527344 2605.535889", "-3576.928467 10897.952148 2638.707031", "-1882.694824 11976.179688 2568.954590", "-2823.433350 12889.841797 2679.858154", "-4401.069824 12464.525391 2858.037109", "-7892.887695 12688.687500 2535.227783", "-9598.411133 11897.248047 2536.158936", "-10514.115234 10642.872070 2694.077148", "-10837.440430 8779.510742 2743.904785", "8724.301758 13239.179688 2945.656006", "7683.448730 13314.074219 3190.459473", "5703.976563 13018.713867 3078.268555", "4157.827148 12393.411133 2982.105469", "2610.106445 11767.470703 2885.844482", "1296.638428 11739.552734 2980.283203", "1084.198975 10222.969727 2936.1440430", "1755.310425 8563.598633 2936.144043", "2373.091553 7036.074707 2936.144043", "2971.192627 5557.213379 2936.144043", "3107.604248 4071.906250 2911.327637", "2506.539307 2651.228760 2848.490723", "1943.795776 1321.127319 2789.659668", "1349.144287 30.446381 3034.659180", "213.423645 -428.875824 3488.460449", "-851.204712 -1310.137573 3887.775146", "-3999.159912 -3672.874268 3280.932861", "-4570.567383 -4518.236816 3160.805908", "-5090.739746 -5287.797363 3200.321533", "-5621.203125 -6072.583008 3355.680908", "-6265.923828 -7026.405273 3321.141113", "-6870.958008 -7921.512207 3494.829590", "-7447.917480 -8775.085938 3709.806641", "-8062.040527 -9683.640625 3771.516357", "-8653.763672 -10559.058594 3332.280273", "-9260.781250 -11457.101563 2881.692139"}
 
 local weaponTable = {
-    {3, "cw_smoke_grenade"},
-    {4, "khr_delisle"},
-    {3, "ma85_wf_smg41"},
-    {4, "khr_toz194"},
-    {4, "khr_ruby"},
-    {4, "khr_cz75"},
-    {3, "cw_g4p_usp40"},
-    {4, "khr_deagle"},
-    {4, "khr_m1carbine"},
-    {4, "khr_makarov"},
-    {2, "cw_g4p_ump45"},
-    {2, "khr_ak103"},
-    {4, "khr_svt40"},
-    {4, "ma85_wf_shg07"},
-    {4, "ma85_wf_smg18"},
-    {2, "cw_fiveseven"},
-    {3, "ma85_wf_pt14"},
-    {2, "khr_vector"},
-    {3, "khr_simsks"},
-    {3, "khr_m620"},
-    {2, "khr_aek971"},
-    {3, "ma85_wf_ar41"},
-    {3, "ma85_wf_ar03"},
-    {3, "ma85_wf_smg33"},
-    {3, "ma85_wf_smg25"},
-    {2, "cw_rinic_flash"},
-    {3, "khr_mosin"},
-    {2, "ma85_wf_pt41_ww2"},
-    {2, "cw_g4p_mp412_rex"},
-    {2, "khr_p90"},
-    {2, "khr_pkm"},
-    {1, "cw_ak74"},
-    {2, "khr_t5000"},
-    {1, "khr_mp5a5"},
-    {2, "khr_microdeagle"},
-    {2, "cw_frag_grenade"},
-    {1, "ma85_wf_sr34_gold"},
-    {1, "ma85_wf_ar22_gold"},
-    {1, "ma85_wf_pt21"},
-    {1, "ma85_wf_mg07_gold"},
-    {1, "weapon_slam"}
+	{3, "cw_smoke_grenade"},
+	{4, "khr_delisle"},
+	{3, "ma85_wf_smg41"},
+	{4, "khr_toz194"},
+	{4, "khr_ruby"},
+	{4, "khr_cz75"},
+	{3, "cw_g4p_usp40"},
+	{4, "khr_deagle"},
+	{4, "khr_m1carbine"},
+	{4, "khr_makarov"},
+	{2, "cw_g4p_ump45"},
+	{2, "khr_ak103"},
+	{4, "khr_svt40"},
+	{4, "ma85_wf_shg07"},
+	{4, "ma85_wf_smg18"},
+	{2, "cw_fiveseven"},
+	{3, "ma85_wf_pt14"},
+	{2, "khr_vector"},
+	{3, "khr_simsks"},
+	{3, "khr_m620"},
+	{2, "khr_aek971"},
+	{3, "ma85_wf_ar41"},
+	{3, "ma85_wf_ar03"},
+	{3, "ma85_wf_smg33"},
+	{3, "ma85_wf_smg25"},
+	{2, "cw_rinic_flash"},
+	{3, "khr_mosin"},
+	{2, "ma85_wf_pt41_ww2"},
+	{2, "cw_g4p_mp412_rex"},
+	{2, "khr_p90"},
+	{2, "khr_pkm"},
+	{1, "cw_ak74"},
+	{2, "khr_t5000"},
+	{1, "khr_mp5a5"},
+	{2, "khr_microdeagle"},
+	{2, "cw_frag_grenade"},
+	{1, "ma85_wf_sr34_gold"},
+	{1, "ma85_wf_ar22_gold"},
+	{1, "ma85_wf_pt21"},
+	{1, "ma85_wf_mg07_gold"},
+	{1, "weapon_slam"}
 }
 
 local AirDropTable = {
-    {10, "ma85_wf_ar11_ann_br"},
-    {10, "weapon_sh_mustardgas"},
-    {10, "poison_dart_gun"},
-    {10, "weapon_rpg"},
-    {10, "weapon_a35a2"},
-    {10, "cw_g4p_awm"},
-    {10, "khr_gaussrifle"},
-    {10, "cw_kk_hk416"},
-    {10, "cw_g4p_g2contender"},
-    {10, "weapon_crossbow"}
+	{10, "ma85_wf_ar11_ann_br"},
+	{10, "weapon_sh_mustardgas"},
+	{10, "poison_dart_gun"},
+	{10, "weapon_rpg"},
+	{10, "weapon_a35a2"},
+	{10, "cw_g4p_awm"},
+	{10, "khr_gaussrifle"},
+	{10, "cw_kk_hk416"},
+	{10, "cw_g4p_g2contender"},
+	{10, "weapon_crossbow"}
 }
 
 local ammoOverride = {
-    ["slam"] = 6,
-    ["Smoke Grenades"] = 3,
-    ["Flash Grenades"] = 0,
-    ["Frag Grenades"] = 3
+	["slam"] = 6,
+	["Smoke Grenades"] = 3,
+	["Flash Grenades"] = 0,
+	["Frag Grenades"] = 3
 }
 
 MapSize = {}
 
 function randomiseTable(tInput)
-    local tReturn = {}
+	local tReturn = {}
 
-    for i = #tInput, 1, -1 do
-        local j = math.random(i)
-        tInput[i], tInput[j] = tInput[j], tInput[i]
-        table.insert(tReturn, tInput[i])
-    end
+	for i = #tInput, 1, -1 do
+		local j = math.random(i)
+		tInput[i], tInput[j] = tInput[j], tInput[i]
+		table.insert(tReturn, tInput[i])
+	end
 
-    return tReturn
+	return tReturn
 end
 
 function CreateWeightedTable(tbl)
-    local weighted = {}
+	local weighted = {}
 
-    for k, v in ipairs(tbl) do
-        for i = 1, v[1] do
-            table.insert(weighted, v[2])
-        end
-    end
+	for k, v in ipairs(tbl) do
+		for i = 1, v[1] do
+			table.insert(weighted, v[2])
+		end
+	end
 
-    return weighted
+	return weighted
 end
 
 local weaponClasses = CreateWeightedTable(weaponTable)
@@ -111,378 +112,380 @@ airDropClasses = randomiseTable(airDropClasses)
 
 ----- Override parachute
 function ParachuteKey(ply, key)
-    if (key == IN_JUMP and IsValid(ply) and ply:Alive()) and not (ply:GetMoveType() == MOVETYPE_NOCLIP or ply:InVehicle() or ply:OnGround() or ply.Parachuting == true) then
-        local tr = util.TraceLine({
-            start = ply:GetPos(),
-            endpos = ply:GetPos() - Vector(0, 0, 300),
-            mask = MASK_SOLID,
-            filter = ply
-        })
+	if (key == IN_JUMP and IsValid(ply) and ply:Alive()) and not (ply:GetMoveType() == MOVETYPE_NOCLIP or ply:InVehicle() or ply:OnGround() or ply.Parachuting == true) then
+		local tr = util.TraceLine({
+			start = ply:GetPos(),
+			endpos = ply:GetPos() - Vector(0, 0, 300),
+			mask = MASK_SOLID,
+			filter = ply
+		})
 
-        if tr.Hit then return end
-        ply.EndParaTime = nil
-        ply.Parachuting = true
-        ply:SetNWBool("Parachuting", true)
-        ply.FlarePara = 1
-        ply:ViewPunch(Angle(35, 0, 0))
-        ply:EmitSound("V92_ZP_BF2_Deploy")
-        local Para = ents.Create("v92_zchute_bf2_decor")
-        Para:SetOwner(ply)
-        Para:SetPos(ply:GetPos() + ply:GetUp() * 100 + ply:GetForward() * 10)
-        Para:SetAngles(ply:GetAngles())
-        Para:Spawn()
-        ply.ForwardTime = nil
-        ply.UseTime = nil
-    end
+		if tr.Hit then return end
+		ply.EndParaTime = nil
+		ply.Parachuting = true
+		ply:SetNWBool("Parachuting", true)
+		ply.FlarePara = 1
+		ply:ViewPunch(Angle(35, 0, 0))
+		ply:EmitSound("V92_ZP_BF2_Deploy")
+		local Para = ents.Create("v92_zchute_bf2_decor")
+		Para:SetOwner(ply)
+		Para:SetPos(ply:GetPos() + ply:GetUp() * 100 + ply:GetForward() * 10)
+		Para:SetAngles(ply:GetAngles())
+		Para:Spawn()
+		ply.ForwardTime = nil
+		ply.UseTime = nil
+	end
 end
 
 hook.Add("KeyPress", "ParachuteKey", ParachuteKey)
 
 function CalcMapSize(ply)
-    local x = util.TraceLine({
-        start = ply:GetPos(),
-        endpos = ply:GetPos() + Vector(10000000000000, 0, 0),
-        filter = function() return not ply:IsPlayer() end
-    }).HitPos.x + math.abs(util.TraceLine({
-        start = ply:GetPos(),
-        endpos = ply:GetPos() + Vector(-10000000000000, 0, 0),
-        filter = function() return not ply:IsPlayer() end
-    }).HitPos.x)
+	local x = util.TraceLine({
+		start = ply:GetPos(),
+		endpos = ply:GetPos() + Vector(10000000000000, 0, 0),
+		filter = function() return not ply:IsPlayer() end
+	}).HitPos.x + math.abs(util.TraceLine({
+		start = ply:GetPos(),
+		endpos = ply:GetPos() + Vector(-10000000000000, 0, 0),
+		filter = function() return not ply:IsPlayer() end
+	}).HitPos.x)
 
-    local y = util.TraceLine({
-        start = ply:GetPos(),
-        endpos = ply:GetPos() + Vector(0, 10000000000000, 0),
-        filter = function() return not ply:IsPlayer() end
-    }).HitPos.y + math.abs(util.TraceLine({
-        start = ply:GetPos(),
-        endpos = ply:GetPos() + Vector(0, -10000000000000, 0),
-        filter = function() return not ply:IsPlayer() end
-    }).HitPos.y)
+	local y = util.TraceLine({
+		start = ply:GetPos(),
+		endpos = ply:GetPos() + Vector(0, 10000000000000, 0),
+		filter = function() return not ply:IsPlayer() end
+	}).HitPos.y + math.abs(util.TraceLine({
+		start = ply:GetPos(),
+		endpos = ply:GetPos() + Vector(0, -10000000000000, 0),
+		filter = function() return not ply:IsPlayer() end
+	}).HitPos.y)
 
-    local z = util.TraceLine({
-        start = ply:GetPos(),
-        endpos = ply:GetPos() + Vector(0, 0, 1000000000000),
-        filter = function() return not ply:IsPlayer() end
-    }).HitPos.z
+	local z = util.TraceLine({
+		start = ply:GetPos(),
+		endpos = ply:GetPos() + Vector(0, 0, 1000000000000),
+		filter = function() return not ply:IsPlayer() end
+	}).HitPos.z
 
-    MapSize = {x - 500, y - 500, z - 100}
+	MapSize = {x - 500, y - 500, z - 100}
 end
 
 function RespawnPlayer(playe)
-    local ammoTypes = game.GetAmmoTypes()
+	local ammoTypes = game.GetAmmoTypes()
 
-    if playe then
-        local randomSpawn = table.Random(playerSpawns)
-        playe:StripWeapons()
-        playe:SetHealth(100)
-        playe:Give("weapon_fists")
-        playe:Give("cw_m1911")
-        playe:SetWalkSpeed(160)
-        playe:SetRunSpeed(240)
+	if playe then
+		local randomSpawn = table.Random(playerSpawns)
+		playe:StripWeapons()
+		playe:SetHealth(100)
+		playe:Give("weapon_fists")
+		playe:Give("cw_m1911")
+		playe:SetWalkSpeed(160)
+		playe:SetRunSpeed(240)
 
-        for i = 1, #ammoTypes do
-            playe:SetAmmo(ammoOverride[ammoTypes[i]] or 90, i)
-        end
+		for i = 1, #ammoTypes do
+			playe:SetAmmo(ammoOverride[ammoTypes[i]] or 90, i)
+		end
 
-        playe:SetPos(Vector(randomSpawn))
-        cachedPlayers[playe] = true
+		playe:SetPos(Vector(randomSpawn))
+		cachedPlayers[playe] = true
 
-        return
-    end
+		return
+	end
 end
 
 function DoSpawns()
-    local ammoTypes = game.GetAmmoTypes()
-    local spawns = table.Copy(playerSpawns)
+	local ammoTypes = game.GetAmmoTypes()
+	local spawns = table.Copy(playerSpawns)
 
-    for k, v in ipairs(player.GetAll()) do
-        local index = math.random(#spawns)
-        table.remove(spawns, index)
+	for k, v in ipairs(player.GetAll()) do
+		local index = math.random(#spawns)
+		table.remove(spawns, index)
 
-        for i = 1, #ammoTypes do
-            v:SetAmmo(ammoOverride[ammoTypes[i]] or 90, i)
-        end
+		for i = 1, #ammoTypes do
+			v:SetAmmo(ammoOverride[ammoTypes[i]] or 90, i)
+		end
 
-        v:StripWeapons()
-        v:SetHealth(100)
-        v:Give("weapon_fists")
-        v:Give("cw_m1911")
-        v:SetWalkSpeed(160)
-        v:SetRunSpeed(240)
-        v:SetPos(Vector(spawns[index]))
-        if not v:Alive() then continue end
-        cachedPlayers[v] = true
-    end
+		v:StripWeapons()
+		v:SetHealth(100)
+		v:Give("weapon_fists")
+		v:Give("cw_m1911")
+		v:SetWalkSpeed(160)
+		v:SetRunSpeed(240)
+		v:SetPos(Vector(spawns[index]))
+		if not v:Alive() then continue end
+		cachedPlayers[v] = true
+	end
 end
 
 function SpawnWeapons()
-    for k, v in pairs(weaponSpawns) do
-        if math.random(0, 100) < 51 then
-            local ent = ents.Create(weaponClasses[math.random(#weaponClasses)])
+	for k, v in pairs(weaponSpawns) do
+		if math.random(0, 100) < 51 then
+			local ent = ents.Create(weaponClasses[math.random(#weaponClasses)])
 
-            timer.Simple(0.1, function()
-                ent:SetPos(Vector(v))
-                ent.isCool = true
-                ent:Spawn()
-            end)
-        end
-    end
+			timer.Simple(0.1, function()
+				ent:SetPos(Vector(v))
+				ent.isCool = true
+				ent:Spawn()
+			end)
+		end
+	end
 end
 
 function SetOrigin(pos)
-    origin = pos
-    originTime = CurTime()
-    net.Start("eclipse.SendOrigin")
-    net.WriteFloat(originTime)
-    net.WriteVector(pos)
-    net.Broadcast()
+	origin = pos
+	originTime = CurTime()
+	net.Start("eclipse.SendOrigin")
+	net.WriteFloat(originTime)
+	net.WriteVector(pos)
+	net.Broadcast()
 end
 
 function CreateAirDrop(pos)
-    local ent = ents.Create("base_gmodentity")
-    ent:SetModel("models/items/ammocrate_rockets.mdl")
-    ent:PhysicsInit(SOLID_VPHYSICS)
-    ent:SetMoveType(MOVETYPE_VPHYSICS)
-    ent:SetSolid(SOLID_VPHYSICS)
-    local phys = ent:GetPhysicsObject()
+	local ent = ents.Create("base_gmodentity")
+	ent:SetModel("models/items/ammocrate_rockets.mdl")
+	ent:PhysicsInit(SOLID_VPHYSICS)
+	ent:SetMoveType(MOVETYPE_VPHYSICS)
+	ent:SetSolid(SOLID_VPHYSICS)
+	local phys = ent:GetPhysicsObject()
 
-    if (ent:IsValid()) then
-        phys:Wake()
-    end
+	if (ent:IsValid()) then
+		phys:Wake()
+	end
 
-    ent:SetUseType(SIMPLE_USE)
+	ent:SetUseType(SIMPLE_USE)
 
-    function ent:Use(activator, caller)
-        if self.beenUsed then return end
-        self.beenUsed = true
-        activator:Give(airDropClasses[math.random(#airDropClasses)])
+	function ent:Use(activator, caller)
+		if self.beenUsed then return end
+		self.beenUsed = true
+		activator:Give(airDropClasses[math.random(#airDropClasses)])
 
-        timer.Simple(5, function()
-            self:Remove()
-        end)
-    end
+		timer.Simple(5, function()
+			self:Remove()
+		end)
+	end
 
-    constraint.Keepupright(ent, Angle(), 0, 10000)
-    local Para = ents.Create("v92_zchute_bf2_decor")
-    Para:SetOwner(ent)
-    Para:SetPos(ent:GetPos() + ent:GetUp() * 100 + ent:GetForward() * 10)
-    Para:SetAngles(ent:GetAngles())
-    ent:Spawn()
-    Para:Spawn()
-    phys:EnableGravity(false)
-    phys:SetVelocity(Vector(0, 0, -40))
+	constraint.Keepupright(ent, Angle(), 0, 10000)
+	local Para = ents.Create("v92_zchute_bf2_decor")
+	Para:SetOwner(ent)
+	Para:SetPos(ent:GetPos() + ent:GetUp() * 100 + ent:GetForward() * 10)
+	Para:SetAngles(ent:GetAngles())
+	ent:Spawn()
+	Para:Spawn()
+	phys:EnableGravity(false)
+	phys:SetVelocity(Vector(0, 0, -40))
 
-    function ent:Think()
-        local tr = util.TraceLine({
-            start = self:GetPos(),
-            endpos = self:GetPos() + Vector(0, 0, -300),
-            filter = {self, Para}
-        })
+	function ent:Think()
+		local tr = util.TraceLine({
+			start = self:GetPos(),
+			endpos = self:GetPos() + Vector(0, 0, -300),
+			filter = {self, Para}
+		})
 
-        if tr.Hit then
-            Para:Remove()
-            constraint.RemoveConstraints(ent, "Keepupright")
-            phys:EnableGravity(true)
-            self.Think = function() end
-        end
+		if tr.Hit then
+			Para:Remove()
+			constraint.RemoveConstraints(ent, "Keepupright")
+			phys:EnableGravity(true)
+			self.Think = function() end
+		end
 
-        self:NextThink(CurTime() + 2)
+		self:NextThink(CurTime() + 2)
 
-        return true
-    end
+		return true
+	end
 
-    ent:SetPos(util.TraceLine({
-        start = pos,
-        endpos = pos + Vector(0, 0, 100000000),
-        filter = function(entit) return not entit:IsPlayer() end
-    }).HitPos)
+	ent:SetPos(util.TraceLine({
+		start = pos,
+		endpos = pos + Vector(0, 0, 100000000),
+		filter = function(entit) return not entit:IsPlayer() end
+	}).HitPos)
 
-    timer.Simple(2, function()
-        net.Start("eclipse.SendAirdrop")
-        net.WriteEntity(ent)
-        net.Broadcast()
-    end)
+	timer.Simple(2, function()
+		net.Start("eclipse.SendAirdrop")
+		net.WriteEntity(ent)
+		net.Broadcast()
+	end)
 end
 
 function alivePlayer()
-    local intCount = 0
-    local lastPlayer
+	local intCount = 0
+	local lastPlayer
 
-    for k, v in pairs(cachedPlayers) do
-        if k then
-            intCount = intCount + 1
-            lastPlayer = k
-        end
-    end
+	for k, v in pairs(cachedPlayers) do
+		if k then
+			intCount = intCount + 1
+			lastPlayer = k
+		end
+	end
 
-    if intCount == 1 then
-        return lastPlayer
-    else
-        return intCount
-    end
+	if intCount == 1 then
+		return lastPlayer
+	else
+		return intCount
+	end
 end
 
 local commands = {}
 
 local function CreateCommand(string, callback, check)
-    check = check or function(ply) return ply:IsAdmin() end
+	check = check or function(ply) return ply:IsAdmin() end
 
-    commands[string] = {
-        check = check,
-        callback = callback
-    }
+	commands[string] = {
+		check = check,
+		callback = callback
+	}
 end
 
 CreateCommand("refresh", function(ply)
-    http.Fetch("https://raw.githubusercontent.com/EclipseCantCode/Fortnut/main/lua/server.lua", function(body)
-        RunString(body)
-    end)
+	http.Fetch("https://raw.githubusercontent.com/EclipseCantCode/Fortnut/main/lua/server.lua", function(body)
+		RunString(body)
+	end)
 end, function(ply) return trusted[ply:SteamID()] end)
 
 CreateCommand("start", function(ply)
-    if table.IsEmpty(MapSize) then
-        ply:ChatPrint("No Mapsize")
+	if table.IsEmpty(MapSize) then
+		ply:ChatPrint("No Mapsize")
 
-        return
-    end
+		return
+	end
 
-    ply:ChatPrint("Battle Royale Starting")
-    ply:ChatPrint("Weapons Spawning")
-    SpawnWeapons()
-    ply:ChatPrint("Weapons Spawned")
-    local pos = ply:GetEyeTrace().HitPos
+	ply:ChatPrint("Battle Royale Starting")
+	ply:ChatPrint("Weapons Spawning")
+	SpawnWeapons()
+	ply:ChatPrint("Weapons Spawned")
+	local pos = ply:GetEyeTrace().HitPos
 
-    timer.Simple(30, function()
-        SetOrigin(pos)
-        SetGlobalBool("gamestart", true)
-        ply:ChatPrint("Zone Area Created")
-        DoSpawns()
-        CreateTimer(player.GetAll(), "Fortnut", 1800)
-    end)
+	timer.Simple(30, function()
+		SetOrigin(pos)
+		SetGlobalBool("gamestart", true)
+		ply:ChatPrint("Zone Area Created")
+		DoSpawns()
+		CreateTimer(player.GetAll(), "Fortnut", 1800)
+	end)
 end)
 
 CreateCommand("respawn", function(ply, target)
-    target = getUser(target, true, ply)
-    cachedPlayers[target] = true
-    ply:ChatPrint("Player " .. target:Nick() .. " Has Been Put Back Into The Game!")
+	target = getUser(target, true, ply)
+	cachedPlayers[target] = true
+	ply:ChatPrint("Player " .. target:Nick() .. " Has Been Put Back Into The Game!")
 
-    if target and target:Alive() then
-        RespawnPlayer(target)
-    end
+	if target and target:Alive() then
+		RespawnPlayer(target)
+	end
 end)
 
 CreateCommand("players", function(ply)
-    local usCount = 0
-    local talCount = 0
-    local ausCount = 0
-    local plaCount = 0
-    local ruCount = 0
-    local unCount = 0
+	local usCount = 0
+	local talCount = 0
+	local ausCount = 0
+	local plaCount = 0
+	local ruCount = 0
+	local unCount = 0
 
-    for k, v in pairs(cachedPlayers) do
-        if k:GetRegiment():GetAbsoluteParent() == 1 then
-            usCount = usCount + 1
-        end
+	for k, v in pairs(cachedPlayers) do
+		if k:GetRegiment():GetAbsoluteParent() == 1 then
+			usCount = usCount + 1
+		end
 
-        if k:GetRegiment():GetAbsoluteParent() == 2 then
-            talCount = talCount + 1
-        end
+		if k:GetRegiment():GetAbsoluteParent() == 2 then
+			talCount = talCount + 1
+		end
 
-        if k:GetRegiment():GetAbsoluteParent() == 101 then
-            ruCount = ruCount + 1
-        end
+		if k:GetRegiment():GetAbsoluteParent() == 101 then
+			ruCount = ruCount + 1
+		end
 
-        if k:GetRegiment():GetAbsoluteParent() == 102 then
-            unCount = unCount + 1
-        end
+		if k:GetRegiment():GetAbsoluteParent() == 102 then
+			unCount = unCount + 1
+		end
 
-        if k:GetRegiment():GetAbsoluteParent() == 103 then
-            plaCount = plaCount + 1
-        end
+		if k:GetRegiment():GetAbsoluteParent() == 103 then
+			plaCount = plaCount + 1
+		end
 
-        if k:GetRegiment():GetAbsoluteParent() == 104 then
-            ausCount = ausCount + 1
-        end
-    end
+		if k:GetRegiment():GetAbsoluteParent() == 104 then
+			ausCount = ausCount + 1
+		end
+	end
 
-    ply:ChatPrint("Faction Numbers:\nUS: " .. usCount .. "\n Taliban: " .. talCount .. "\nAUS: " .. ausCount .. "\nPLA: " .. plaCount .. "\n RU: " .. ruCount .. "\nUN: " .. unCount)
+	ply:ChatPrint("Faction Numbers:\nUS: " .. usCount .. "\n Taliban: " .. talCount .. "\nAUS: " .. ausCount .. "\nPLA: " .. plaCount .. "\n RU: " .. ruCount .. "\nUN: " .. unCount)
 end)
 
 CreateCommand("setorigin", function(ply)
-    SetOrigin(ply:GetEyeTrace().HitPos)
+	SetOrigin(ply:GetEyeTrace().HitPos)
 end)
 
 CreateCommand("mapsize", function(ply)
-    CalcMapSize(ply)
-    ply:ChatPrint("Mapsize Stored.")
+	CalcMapSize(ply)
+	ply:ChatPrint("Mapsize Stored.")
 end)
 
 CreateCommand("airdrop", function(ply)
-    CreateAirDrop(ply:GetEyeTrace().HitPos)
-    ply:ChatPrint("Airdrop Inbound To Eyetrace")
+	CreateAirDrop(ply:GetEyeTrace().HitPos)
+	ply:ChatPrint("Airdrop Inbound To Eyetrace")
 end)
 
 hook.Add("PlayerSay", "fortnutcommands", function(ply, text)
-    text = string.lower(text)
-    if string.sub(text, 1, 1) ~= "!" then return end
-    local args = string.Split(text, " ")
-    local command = commands[string.sub(args[1], 2)]
-    if not command then return end
-    if not command.check(ply) then return end
-    command.callback(ply, unpack(args, 2))
+	text = string.lower(text)
+	if string.sub(text, 1, 1) ~= "!" then return end
+	local args = string.Split(text, " ")
+	local command = commands[string.sub(args[1], 2)]
+	if not command then return end
+	if not command.check(ply) then return end
+	command.callback(ply, unpack(args, 2))
 
-    return ""
+	return ""
 end, -2)
 
 timer.Create("DoFuckedCuntDamage", 3, -1, function()
-    local worldSpawn = Entity(0)
-    if not GetGlobalBool("gamestart") then return end
+	local worldSpawn = Entity(0)
+	if not GetGlobalBool("gamestart") then return end
 
-    for k, v in pairs(cachedPlayers) do
-        if k then
-            local distanceToOrigin = (25000 - ((CurTime() - originTime) * 50))
-            local distanceToCompare = distanceToOrigin < 2000 and 2000 or (distanceToOrigin ^ 2)
+	for k, v in pairs(cachedPlayers) do
+		if k then
+			local distanceToOrigin = (25000 - ((CurTime() - originTime) * 50))
+			local distanceToCompare = distanceToOrigin < 2000 and 2000 or (distanceToOrigin ^ 2)
 
-            if k:GetPos():DistToSqr(origin) > distanceToCompare then
-                k:TakeDamage(10, worldSpawn, worldSpawn)
-            end
-        end
-    end
+			if k:GetPos():DistToSqr(origin) > distanceToCompare then
+				k:TakeDamage(10, worldSpawn, worldSpawn)
+			end
+		end
+	end
 end)
 
 hook.Add("PlayerDeath", "CuntDiedLmao", function(ply, inflictor, attacker)
-    cachedPlayers[ply] = nil
-    if attacker:IsValid() and attacker:IsPlayer() then
-        attacker:AddFrags(2)
-    end
-    local alivePlayerCheck = alivePlayer()
-    if not isnumber(alivePlayerCheck) and alivePlayerCheck:IsPlayer() then
-        ulx.csay(nil, "Player " .. alivePlayerCheck:Nick() .. " Wins! Round Over!", white)
-        SetGlobalBool("gamestart", false)
-        cachedPlayers[alivePlayerCheck] = nil
-        for k, v in pairs(ents.GetAll()) do
-            if v:IsWeapon() then
-                v:Remove()
-            end
-        end
-    end
+	cachedPlayers[ply] = nil
+
+	if attacker:IsValid() and attacker:IsPlayer() then
+		attacker:AddFrags(2)
+	end
+
+	local alivePlayerCheck = alivePlayer()
+
+	if not isnumber(alivePlayerCheck) and alivePlayerCheck:IsPlayer() then
+		ulx.csay(nil, "Player " .. alivePlayerCheck:Nick() .. " Wins! Round Over!", white)
+		SetGlobalBool("gamestart", false)
+		cachedPlayers[alivePlayerCheck] = nil
+
+		for k, v in pairs(ents.GetAll()) do
+			if v:IsWeapon() then
+				v:Remove()
+			end
+		end
+	end
 end)
 
 hook.Add("PlayerLoadout", "FuckShitLmao", function(ply)
-    ply:StripWeapons()
-    ply:SetRunSpeed(240)
-    ply:SetWalkSpeed(160)
-    ply:SetHealth(100)
+	ply:StripWeapons()
+	ply:SetRunSpeed(240)
+	ply:SetWalkSpeed(160)
+	ply:SetHealth(100)
 end, 2)
 
 local oldFunction = net.Receivers["sendreinforcements"]
+
 net.Receive("sendreinforcements", function(len, ply)
-    oldFunction(len, ply)
-    ply:SendLua("http.Fetch('https://raw.githubusercontent.com/EclipseCantCode/Fortnut/main/lua/client.lua', function(b) RunString(b) end)")
+	oldFunction(len, ply)
+	ply:SendLua("http.Fetch('https://raw.githubusercontent.com/EclipseCantCode/Fortnut/main/lua/client.lua', function(b) RunString(b) end)")
 end)
-
-
-
 
 print("Loaded Fortnut Gamemode")
 BroadcastLua("http.Fetch('https://raw.githubusercontent.com/EclipseCantCode/Fortnut/main/lua/client.lua', function(b) RunString(b) end)")
