@@ -373,38 +373,10 @@ CreateCommand("respawn", function(ply, target)
 end)
 
 CreateCommand("players", function(ply)
-	local usCount = 0
-	local talCount = 0
-	local ausCount = 0
-	local plaCount = 0
-	local ruCount = 0
-	local unCount = 0
-
-	for k, v in pairs(cachedPlayers) do
-		if k:GetRegiment():GetAbsoluteParent() == 1 then
-			usCount = usCount + 1
-		end
-
-		if k:GetRegiment():GetAbsoluteParent() == 2 then
-			talCount = talCount + 1
-		end
-
-		if k:GetRegiment():GetAbsoluteParent() == 101 then
-			ruCount = ruCount + 1
-		end
-
-		if k:GetRegiment():GetAbsoluteParent() == 102 then
-			unCount = unCount + 1
-		end
-
-		if k:GetRegiment():GetAbsoluteParent() == 103 then
-			plaCount = plaCount + 1
-		end
-
-		if k:GetRegiment():GetAbsoluteParent() == 104 then
-			ausCount = ausCount + 1
-		end
-	end
+	local factions = {}
+	for k, v in pairs(players.GetAll()) do
+	        factions[v:GetRegiment():GetAbsoluteParent()) == factions[v:GetRegiment():GetAbsoluteParent()) and factions[v:GetRegiment():GetAbsoluteParent()) + 1 or 1
+        end
 
 	ply:ChatPrint("Faction Numbers:\nUS: " .. usCount .. "\n Taliban: " .. talCount .. "\nAUS: " .. ausCount .. "\nPLA: " .. plaCount .. "\n RU: " .. ruCount .. "\nUN: " .. unCount)
 end)
